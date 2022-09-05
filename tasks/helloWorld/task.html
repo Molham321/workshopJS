@@ -1,0 +1,74 @@
+﻿<html>
+    <head>
+        <title>Dako Workshop "Grundlagen Html & Javascript"</title>
+        <link rel="stylesheet" type="text/css" href="../../main.css">
+        <link rel="stylesheet" type="text/css" href="task.css">
+        <script defer src="../../main.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div class="task-description">
+                <p>Aufgabe: Lege einige HTML-Elemente an und gib eine Nachricht aus</p>
+                <div>
+                    <ol>
+                        <li>
+                            <span>Erstelle über dem gelben div einen rote Überschrift mit dem Text "Hello World"</span>
+                        </li>
+                        <li>
+                            <span>Füge in dem gelben div ein beliebiges Bild ein, welches einen Abstand von 10px zum Rand des divs hat</span>
+                        </li>
+                        <li>
+                            <span>Füge ein grünes div unter dem ersten ein, welches einen Abstand von 20px zum gelben div hat</span>
+                        </li>
+                        <li>
+                            <span>Erstelle in dem grünen div eine Tabelle</span>
+                            <ul>
+                                <li>
+                                    Sie hat ebenfalls einen Abstand von 10px zum Rand des divs
+                                </li>
+                                <li>
+                                    Sie soll aus 2 Zeilen und 3 Spalten bestehen
+                                </li>
+                                <li>
+                                    In jeder Zelle der Tabelle steht der Spalten- und Zeilenindex, in der sich die Zelle befindet
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Sorge dafür, dass bei einem Klick auf dem "Hallo"-Button ein Alert mit der Nachricht "Hello World" aufpoppt (task.js)</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="task">
+                <!-- rote Überschrift (Aufgabe 1) -->
+                <h1 class="headline">Hello World</h1>
+                <div id="yellow-container">
+                    <!-- Bild mit Abstand (Aufgabe 2) -->
+                    <img src="katze.jpg" alt="cat">
+                </div>
+                <!-- grünes div mit Abstand (Aufgabe 3) -->
+                <div class="green-container">
+                    <!-- Tabelle (Aufgabe 4)  -->
+                    <table class="green-table">
+                        <tr>
+                            <th>(1,1)</th>
+                            <th>(1,2)</th>
+                            <th>(1,3)</th>
+                        </tr>
+                        <tr>
+                            <th>(2,1)</th>
+                            <th>(2,2)</th>
+                            <th>(2,3)</th>
+                        </tr>
+                    </table>
+                </div>
+                <!-- 1. bis 5. Erstelle hier die Dom-Elemente-->
+                <input id="hello-world-button" type="button" value="Hallo" />
+                <script src="task.js"></script>
+            </div>
+
+        </div>
+    </body>
+</html>

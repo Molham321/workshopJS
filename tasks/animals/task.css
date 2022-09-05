@@ -1,0 +1,41 @@
+﻿#animals-wrapper {
+    display: flex;
+    flex: 1;
+    margin-top: 5px;
+    align-items: center;
+}
+
+#animals-wrapper > div {
+    margin: 10px 0;
+}
+
+#animals-wrapper > div + div {
+    margin-left: 5px;
+}
+
+.fence {
+    border: thin solid #808080;
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+}
+
+/* Aufgabe 2 */
+
+.animal {
+    padding: 5px;
+    margin: 3px;
+    color: darkgray;
+    background-color: #D3D3D3;
+}
+
+/* Aufgabe 4 */
+
+.selected {
+    background-color: lightgray;
+    color: white;
+}
+
+.dragging {
+    opacity: .5;
+}

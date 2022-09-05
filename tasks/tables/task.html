@@ -1,0 +1,83 @@
+﻿<html>
+    <head>
+        <title>Dako Workshop "Grundlagen Html & Javascript"</title>
+        <link rel="stylesheet" type="text/css" href="../../main.css">
+        <link rel="stylesheet" type="text/css" href="task.css">
+        <script defer src="../../main.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div class="task-description">
+                <p>Aufgabe: Der Nutzer kann verschiedene Elemente auf eine Liste setzen und es wird die Anzahl der jeweiligen Elemente ausgegeben</p>
+                <div>
+                    <ol>
+                        <li>
+                            <span>Erstelle zwei divs</span>
+                            <ul>
+                                <li>Links für die Eingabe mit einer Textarea</li>
+                                <li>Rechts für die Ausgabe mit einer Tabelle</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Füge einen Button ein, der bei einem Klick den String im Textarea invertiert
+                        </li>
+                        <li>
+                            <span>Füge zwischen den beiden Textarea einen weiteren Button ein, welcher folgendes bei einem Klick tut:</span>
+                            <ul>
+                                <li>Leeren der Ausgabetabelle</li>
+                                <li>Auslesen der Eingabe-Textarea</li>
+                                <li>Trennen des Strings bei einem Kommas in eine Liste von Strings</li>
+                                <li>
+                                    <span>Befüllen der Tabelle nach folgendem Schema</span>
+                                    <ul>
+                                        <li>Erste Spalte: Substring</li>
+                                        <li>Zweite Spalte: Wie oft ist der Substring im String vorgekommen</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Füge neben dem Button eine Checkbox ein</span>
+                            <ul>
+                                <li>Ist die Checkbox angehakt, sollen die Zeilen nach der Anzahlspalte sortiert werden </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="right">
+                    <textarea id="itemInput" name="itemInput" rows="4" cols="50"></textarea> 
+                    <br>
+                    <button id="submit">submit</button>
+                    <button id="empty">empty</button>
+                    <input type="checkbox" id="sort" name="sort">
+                    <label for="sort"> sort number column</label><br>
+                </div>
+                <div class="left">
+                    <table class="table" id="table">
+                </div>
+
+                <!--
+                Beispiel zu Aufgabe 3
+                Eingabe:
+                "Brot, Nudeln, Brot, Brot, Milch, Milch"
+
+                Ausgabe:
+                +--------+--------+
+                |  Item  | Anzahl |
+                +--------+--------+
+                | Brot   |      3 |
+                | Milch  |      2 |
+                | Nudeln |      1 |
+                +--------+--------+
+                -->
+                <script src="task.js"></script>
+            </div>
+            <div>
+                <p id="output"></p>
+            </div>
+        </div>
+    </body>
+</html>
