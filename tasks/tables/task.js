@@ -1,32 +1,22 @@
 ﻿
 const submit = document.getElementById('submit');
+const itemInput = document.getElementById('itemInput');
+const checkbox = document.querySelector("input[name=sort]");
 
 submit.addEventListener("click", function() {
 
-    const itemInput = document.getElementById('itemInput').value;
-    const itemArr = itemInput.split(",");
-
     // Befüllen der Tabelle
-    let count = {};
 
-    itemArr.forEach(element => {
-        if(count[element]) {
-            count[element]++;
-        } else {
-            count[element] = 1;
-        }
-    });
+    let count = countdown()
 
-    console.log(count);
-
-    let table = document.getElementById('table');
+    let table = document.getElementById('myTable');
 
     for(let key in count) {
         let row = `
-        <th>
+        <tr>
             <td>${key}</td>
             <td>${count[key]}</td>
-        </th>`
+        </tr>`
 
         table.innerHTML += row;
     }
@@ -36,55 +26,69 @@ submit.addEventListener("click", function() {
 
 
 document.getElementById("empty").addEventListener("click", function() {
-
-    // Auslesen der Eingabe-Textarea
-    const itemInput = document.getElementById('itemInput').value;
+   
     // ------------------------------
 
     // Leeren der Ausgabetabelle
-    const itemArr = itemInput.split(",");
 
-    let count = {};
+    let count = countdown()
 
-    itemArr.forEach(element => {
-        if(count[element]) {
-            count[element]++;
-        } else {
-            count[element] = 1;
-        }
-    });
-
-    let table = document.getElementById('table');
+    let table = document.getElementById('myTable');
 
     for(let key in count) {
-        let row = `
-        <th>
-            <td></td>
-            <td></td>
-        </th>`
 
-
-        table.innerHTML = "";
+        table.innerHTML = 
+        `
+            <tr>
+              <th>Item</th>
+              <th>Anzahl</th>
+            </tr>`;
     }
     // ----------------------------------------
 
     // Trennen des Strings bei einem Kommas in eine Liste von Strings
     const separatingTheString = itemInput.split(" ");
     console.log(separatingTheString); 
-    // -----------------------------------------
 
+    // -----------------------------------------
 });
 
-document.getElementById("sort").addEventListener("click", function() {
+checkbox.addEventListener("change", (e) => {
 
-    // Auslesen der Eingabe-Textarea
-    const itemInput = document.getElementById('itemInput').value;
-    // ------------------------------
+  if(e.target.checked) {
 
-    // Leeren der Ausgabetabelle
-    const itemArr = itemInput.split(",");
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("myTable");
+    switching = true;
 
+    while (switching) {
+
+      switching = false;
+      rows = table.rows;
+
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[1];
+        y = rows[i + 1].getElementsByTagName("TD")[1];
+
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+});
+
+function countdown() {
+  
     let count = {};
+    const itemArr = itemInput.value.split(",");
 
     itemArr.forEach(element => {
         if(count[element]) {
@@ -94,37 +98,5 @@ document.getElementById("sort").addEventListener("click", function() {
         }
     });
 
-    // Trennen des Strings bei einem Kommas in eine Liste von Strings
-    const separatingTheString = itemInput.split(" ");
-    console.log(separatingTheString); 
-    // -----------------------------------------
-
-    // sort
-
-    let sortable = [];
-    for(let key in count ) {
-        sortable.push([key, count[key]]);
-    }
-
-    sortable.sort(function(a,b) {
-        return a[1] - b[1];
-    });
-
-    console.log(sortable)
-
-    let table = document.getElementById('table');
-
-    table.innerHTML = " ";
-
-    for(let key in sortable) {
-
-        let row = `
-        <th>
-            <td>${sortable}</td>
-            <td>${key}</td>
-        </th>`
-
-        table.innerHTML += row;
-    }
-    // ----------------------------------------
-});
+    return count;
+}

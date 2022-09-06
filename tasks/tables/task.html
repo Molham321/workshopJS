@@ -47,20 +47,19 @@
             </div>
 
             <div class="task">
-                <div class="right">
-                    <textarea id="itemInput" name="itemInput" rows="4" cols="50"></textarea> 
-                    <br>
+                <div class="left">
+                    <textarea id="itemInput" name="itemInput" rows="4" cols="50"></textarea> <br>
                     <button id="submit">submit</button>
                     <button id="empty">empty</button>
-                    <input type="checkbox" id="sort" name="sort">
+                    <input type="checkbox" name="sort">
                     <label for="sort"> sort number column</label><br>
                 </div>
-                <div class="left">
-                    <table class="table" id="table">
-                        <th>
-                            <td>Item</td>
-                            <td>Anzahl</td>
-                        </th>
+                <div class="right">
+                    <table class="table" id="myTable">
+                        <tr>
+                            <th>Item</th>
+                            <th>Anzahl</th>
+                        </tr>
                     </table>
                 </div>
 

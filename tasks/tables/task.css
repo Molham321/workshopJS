@@ -3,14 +3,21 @@
     flex-direction: initial;
 }
 
-.left {
+.right {
     margin-left: 30px;
 }
 
-table, td {
-    border:1px solid black;
-    margin: 5px;
-    text-align: center;
-    border-collapse: collapse;
-
+table{
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
   }
+
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2
+    }
