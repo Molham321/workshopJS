@@ -32,7 +32,7 @@ document.getElementById('MoveContainerBtn').addEventListener('click', function()
         MoveContainerSteps = 100;
     }
 
-    if(distance <= 1100 && goRight === true) {
+    if(distance <= 1700 && goRight === true) {
         distance += MoveContainerSteps*1;
         document.getElementById('MoveContainer').style.left = distance + 'px';
     } else {

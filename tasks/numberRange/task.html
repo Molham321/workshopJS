@@ -44,19 +44,36 @@
             </div>
 
             <div class="task">
-              <div id="error-warnings"></div>
-              <div class="buttons">
-                  <button id="toEmpty">leeren</button>
-                  <button id="hide">Ausblenden</button>
-              </div>
+                <!-- Erstelle ein Hinweisbox -->
+                <div id="error-warnings"></div>
+                <div class="buttons">
+                    <button id="toEmpty">leeren</button>
+                    <button id="hide">Ausblenden</button>
+                </div>
+  
+                <!-- Erstelle 2 Inputfelder, die nebeneinander liegen -->
+                <div class="inputs">
+                  <label for="input1">Input 1:</label>
+                  <input id="input1" class="inputsValue" type="text">
 
-              <div class="inputs">
-                <input class="inputsValue" type="text">
-                <input class="inputsValue" type="text">
-              </div>
-                <script src="task.js"></script>
-            </div>
+                  <label for="input2">Input 2:</label>
+                  <input id="input2" class="inputsValue" type="text">
+                </div>
 
+                <!-- Erstelle ein div-Element für Optionen -->
+                <div class="options">
+                    <label for="choices">choices:</label>
+
+                    <select name="choices" id="select" size="5">      
+                        <option selected value="Min(Input1)">Min(Input1)</option>
+                        <option value="Max(Input1)">Max(Input1)</option>
+                        <option value="Min(Input2)">Min(Input2)</option>
+                        <option value="Max(Input2)">Max(Input2)</option>
+                        <option value="Input1 less Input2"> Input1 less Input2</option>
+                    </select>
+                </div>
+                  <script src="task.js"></script>
+              </div>
         </div>
     </body>
 </html>

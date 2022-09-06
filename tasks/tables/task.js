@@ -1,5 +1,7 @@
 ﻿
-document.getElementById("submit").addEventListener("click", function() {
+const submit = document.getElementById('submit');
+
+submit.addEventListener("click", function() {
 
     const itemInput = document.getElementById('itemInput').value;
     const itemArr = itemInput.split(",");
@@ -118,11 +120,11 @@ document.getElementById("sort").addEventListener("click", function() {
 
         let row = `
         <th>
-            <td>${sortable[key]}</td>
+            <td>${sortable}</td>
+            <td>${key}</td>
         </th>`
 
         table.innerHTML += row;
     }
     // ----------------------------------------
-
 });
