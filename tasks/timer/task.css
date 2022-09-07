@@ -1,7 +1,8 @@
 ﻿.head {
     padding:10px; 
     position:fixed; 
-    top:68%; width:90%; 
+    top:68%; 
+    width:90%; 
     z-index:9999;
     background-color: rgb(7, 46, 46);
 }
@@ -23,6 +24,9 @@
 
 .matchfield {
     background-color: rgb(159, 170, 180);
-    margin-top:54px;
+    margin-top:72px;
+    padding:10px; 
+    z-index:9999;
+    width:90%; 
 }
 
