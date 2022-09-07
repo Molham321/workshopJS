@@ -1,99 +1,60 @@
 ﻿// Aufgabe 1
 
-    let animalList = [];
-    let fund = false;
+let animalList = [];
+let animalListSelected = [];
 
-    // ==================================
-    // #AddAnimalBtn click-EventListener
-    // ===================================
-
-document.getElementById('add-animal-button').addEventListener('click', function() {
+let fund = false;
     
-    const fenceLeft = document.getElementById('fence-left');
-    let addAnimal = document.getElementById('add-animal');
+const fenceLeft  = document.getElementById('fence-left');
+const fenceRight = document.getElementById('fence-right');
+const addAnimal  = document.getElementById('add-animal');
+const moveAnimal = document.getElementById('move-animal');
 
-    // ----------------------------------------
 
-    /* Verhindere ein Hinzufügen, wenn es bereits ein 
-    Element .Animal mit gleichem Namen gibt. */
+// #AddAnimalBtn click-EventListener
+document.getElementById('add-animal-button').addEventListener('click', function() {
 
-    for (i = 0; i < animalList.length; i++) {
+    // check if the input allreade in the list
+    for (let i = 0; i < animalList.length; i++) {
         if(addAnimal.value === animalList[i] ) {
             fund = true;
         }
     } 
 
-    if(!fund) {
+    // if the input allreade in the list do nothing
+    if(fund) {
+        alert('the item is already existed!');
+        fund = false;
 
+    } else {
+        // add the input and sort the list again
         animalList.push(addAnimal.value);
-         animalList.sort();
+        animalList.sort();
 
-
+        // empty the list
         fenceLeft.innerHTML = '';
+
+        // write the list again filtered
         for(let i = 0; i < animalList.length; i++) {
 
-            const divLeft = document.createElement('div');
-            divLeft.className = 'animal';
-        
-            // Aufgabe 3 Klasse Selected
-        
-            divLeft.addEventListener('click', function(e) {
-        
-                const target = e.target;
-        
-                if (target.matches('div')) {
-        
-                    if (e.target.className == 'animal') {
-            
-                        target.className = ('animal selected');
-                        console.log(target.className);
-                    } else {
-                        target.className = ('animal');
-                        console.log(target.className);
-                    }
-                } 
-        
-            // Aufgabe 5 #MoveAnimalsBtn
-        
-            const moveAnimal = document.querySelector('#move-animal');
-            moveAnimal.addEventListener('click', function(e) {
-        
-                const fenceRight = document.getElementById('fence-right');
-        
-                let animals = document.querySelectorAll('.animal');
-        
-                for (let i = 0; i < animals.length; i++) {
-                    if (animals[i].className === 'animal selected') {
+            // create neu animal div
+            const animal = document.createElement('div');
+            animal.className = 'animal';
 
-                        const divRight = document.createElement('div');
-                        divRight.className = 'animal';
-                
-                        const spanRight = document.createElement('span');
-                        spanRight.className = 'animalSpan';
-
-                        spanRight.innerText = animals[i].innerText;
-                        
-                        fenceRight.appendChild(divRight);
-                        divRight.appendChild(spanRight);
+            animal.addEventListener('click', OnItemClick);
+            moveAnimal.addEventListener('click', MoveAnimalOnClick);
         
-                        animals[i].remove();
-                    }
-                }
-            })
-            });
-
+            // create neu animal span
             const span = document.createElement('span');
             span.className = 'animalSpan';
 
+            // Enter the values filtered
             span.innerText = animalList[i];
 
-            fenceLeft.appendChild(divLeft);
-            divLeft.appendChild(span);
+            // display the div and span
+            fenceLeft.appendChild(animal);
+            animal.appendChild(span);
         }
-
-    } else {
-        alert('the item is already existed!');
-        fund = false;
     }
 
     // ==========================
@@ -122,8 +83,51 @@ document.getElementById('add-animal-button').addEventListener('click', function(
 
         })
     })
-
-    //-----------------------------------------------------------------------------------
-
-
 });
+
+
+// Select the Item on click
+function OnItemClick(e) {
+
+    if (e.target.parentNode.id === 'fence-left' || e.target.parentNode.id === 'fence-right') {
+        if (e.target.className == 'animal') {
+            e.target.classList.add('selected');
+        } else {
+            e.target.classList.remove('selected');
+        }
+        animalListSelected.push(e.target.innerText);
+    }
+}
+
+// Move Items on click
+function MoveAnimalOnClick () {     //TODO Aufgabe 7
+
+    // let arr = animalListSelected;
+    // arr.sort();
+
+    let animals = document.querySelectorAll('.animal');
+
+    for (let i = 0; i < animals.length; i++) {
+
+        if (animals[i].className === 'animal selected') {
+
+            const animal = document.createElement('div');
+            animal.className = 'animal';
+
+            animal.addEventListener('click', OnItemClick);
+
+            const span = document.createElement('span');
+            span.className = 'animalSpan';
+
+            span.innerText = animals[i].innerText;
+
+            if(animals[i].parentNode.id === 'fence-left') {
+                fenceRight.appendChild(animal);
+            } else {
+                fenceLeft.appendChild(animal);
+            }
+            animal.appendChild(span);
+            animals[i].remove();
+        }
+    }
+}

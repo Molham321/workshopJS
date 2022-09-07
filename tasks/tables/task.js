@@ -2,56 +2,33 @@
 const submit = document.getElementById('submit');
 const itemInput = document.getElementById('itemInput');
 const checkbox = document.querySelector("input[name=sort]");
+const inverted = document.getElementById('inverted');
 
-submit.addEventListener("click", function() {
+inverted.addEventListener('click', () => {
 
-    // Befüllen der Tabelle
+  itemInput.value = itemInput.value.split("").reverse().join("");
+})
 
-    let count = countdown()
+submit.addEventListener("click", () => {
 
-    let table = document.getElementById('myTable');
+  empty()
 
-    for(let key in count) {
-        let row = `
-        <tr>
-            <td>${key}</td>
-            <td>${count[key]}</td>
-        </tr>`
+  // Befüllen der Tabelle
+  let count = countdown()
+  let table = document.getElementById('myTable');
 
-        table.innerHTML += row;
-    }
+  for(let key in count) {
+      let row = `
+      <tr>
+          <td>${key}</td>
+          <td>${count[key]}</td>
+      </tr>`
+
+      table.innerHTML += row;
+  }
 });
 
-// ---------------------------------
-
-
-document.getElementById("empty").addEventListener("click", function() {
-   
-    // ------------------------------
-
-    // Leeren der Ausgabetabelle
-
-    let count = countdown()
-
-    let table = document.getElementById('myTable');
-
-    for(let key in count) {
-
-        table.innerHTML = 
-        `
-            <tr>
-              <th>Item</th>
-              <th>Anzahl</th>
-            </tr>`;
-    }
-    // ----------------------------------------
-
-    // Trennen des Strings bei einem Kommas in eine Liste von Strings
-    const separatingTheString = itemInput.split(" ");
-    console.log(separatingTheString); 
-
-    // -----------------------------------------
-});
+// ------------------------------------------------------------
 
 checkbox.addEventListener("change", (e) => {
 
@@ -88,7 +65,8 @@ checkbox.addEventListener("change", (e) => {
 function countdown() {
   
     let count = {};
-    const itemArr = itemInput.value.split(",");
+    // let itemArr = itemInput.value.split(",");
+    let itemArr = itemInput.value.split(",").map(element => element.trim());
 
     itemArr.forEach(element => {
         if(count[element]) {
@@ -99,4 +77,22 @@ function countdown() {
     });
 
     return count;
+}
+
+function empty () {
+    // Leeren der Ausgabetabelle
+
+    let count = countdown()
+
+    let table = document.getElementById('myTable');
+
+    for(let key in count) {
+
+        table.innerHTML = 
+        `
+            <tr>
+              <th>Item</th>
+              <th>Anzahl</th>
+            </tr>`;
+    }
 }

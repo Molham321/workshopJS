@@ -19,8 +19,11 @@ document.getElementById('toggle-move-container-button').addEventListener('click'
 })
 
 // 4. Erstelle einen zweiten Button #ToggleContainerBtn, der per Klick den Container #MoveContainer nach rechts bzw. links verschiebt.
+const moveContainerWrapper = document.getElementById('move-container-wrapper');
+
 let distance = 0;
 let goRight = true;
+
 document.getElementById('MoveContainerBtn').addEventListener('click', function() {
 
     let MoveContainerSteps = document.getElementById('MoveContainerSteps').value;
@@ -32,7 +35,10 @@ document.getElementById('MoveContainerBtn').addEventListener('click', function()
         MoveContainerSteps = 100;
     }
 
-    if(distance <= 1700 && goRight === true) {
+    console.log(distance)
+    console.log(moveContainerWrapper.clientWidth)
+
+    if(distance < (moveContainerWrapper.clientWidth - 100) && goRight === true) {
         distance += MoveContainerSteps*1;
         document.getElementById('MoveContainer').style.left = distance + 'px';
     } else {

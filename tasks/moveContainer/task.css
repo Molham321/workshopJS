@@ -1,6 +1,7 @@
 ﻿#move-container-wrapper {
     flex: 1;
     position: relative;
+    width: 100%;
 }
 
 /* 1. Füge dem Container #MoveContainer CSS-Eigenschaften hinzu. */
