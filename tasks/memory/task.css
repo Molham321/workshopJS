@@ -1,4 +1,15 @@
-﻿.gameBoard {
+﻿.task {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(105, 152, 179);
+}
+
+.gameBoard {
     border: solid 1px black;
     width: 300px;
     height: 300px;
@@ -7,8 +18,21 @@
     justify-content: center;
 }
 
-.employee {
+.photo {
     border: solid 1px black;
     width: 70px;
     height: 70px;
+}
+
+.photo:hover {
+    background-color: aliceblue;
+}
+
+.photo:active {
+    background-color: gray;
+}
+
+.photo.clicked {
+    background-color: black;
+    /* todo img url denamik */
 }
