@@ -5,29 +5,48 @@ const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
-const timerElement = document.getElementById('timer')
+// const timerElement = document.getElementById('time')
+const timeTag = document.querySelector(".time b")
 const scoreElement = document.getElementById('score')
 
 let shuffledQuestions, currentQuestionIndex
-let timerValue, scoreValue
+// let timerValue
+let timer
+let scoreValue
+let gameOver = false
+let timeLeft = 30
+
+function gameEnd() {
+  questionContainerElement.classList.add('hide')
+  nextButton.classList.add('hide')
+  startButton.innerText = 'Restart'
+  startButton.classList.remove('hide')
+}
+
+function initTimer() {
+  if(timeLeft <= 0) {
+      gameOver = true
+      gameEnd()
+      return clearInterval(timer)
+  }
+  timeLeft--;
+  timeTag.innerText = timeLeft;
+}
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
-    if(timerValue > 0) {
+    if(!gameOver) { // timerValue > 0
         currentQuestionIndex++
         setNextQuestion()
     } else {
-        questionContainerElement.classList.add('hide')
-        nextButton.classList.add('hide')
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
+      gameEnd()
     }
 
 })
 
 function startGame() {
-  timerElement.innerText = '30'
-  timerValue = parseInt(timerElement.innerText);
+  timeLeft = 30
+  timer = setInterval(initTimer, 1000)
 
   scoreElement.innerText = '0'
   scoreValue = parseInt(scoreElement.innerText);
@@ -71,13 +90,16 @@ function selectAnswer(e) {
   const correct = selectedButton.dataset.correct
 
   if(correct) {
-    timerValue += 5 
-    timerElement.innerText = timerValue
+    // timerValue += 5 
+    // timerElement.innerText = timerValue
+    timeLeft += 5
+
     scoreValue += 10 
     scoreElement.innerText = scoreValue
   } else {
-    timerValue -= 5 
-    timerElement.innerText = timerValue
+    // timerValue -= 5 
+    // timerElement.innerText = timerValue
+    timeLeft -= 5
   }
 
   setStatusClass(task, correct)
