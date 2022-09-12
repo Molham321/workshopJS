@@ -1,91 +1,68 @@
 ﻿
-const counterDiv = document.getElementById('counterDiv')
-const counterElemnt = document.getElementById('counter')
-const gameBoardElement = document.getElementById('gameBoard')
-const startBtnElement = document.getElementById('start-btn')
-const gameTypes = document.getElementsByName('gameType')
-const fieldSize = document.getElementById('fieldSize')
+const counterElemnt = document.getElementById('counter');
+const gameBoardElement = document.getElementById('gameBoard');
+const startBtnElement = document.getElementById('start-btn');
+const gameTypes = document.getElementsByName('gameType');
+const fieldSizeLabel = document.getElementById('fieldSizeLabel');
+const fieldSizeInput = document.getElementById('fieldSizeInput');
+const counterDiv = document.getElementById('counterDiv');
+const counter = document.querySelector(".counter b");
 
-let shuffledPictures
-let cardOne, cardTow
-let disableDeck = false
-let matchedCard = 0
+let shuffledPictures;
+let cardOne, cardTow;
+let counterValue = 0;
 
-let counterValue
-counterValue = parseInt(counterElemnt.innerText)
+let disableDeck = false;
+let matchedCard = 0;
 
-function typeOfGame() {
-  for (let i = 0; i < gameTypes.length; i++) {
-    if (gameTypes[i].checked) {
+// gameTypes[0] == Photo-Photo // gameTypes[1] == Photo- Nmae
+function typeOfGame() 
+{
+  for (let i = 0; i < gameTypes.length; i++) 
+  {
+    if (gameTypes[i].checked) 
       return gameTypes[i].value;
-    }
   }
 }
 
-startBtnElement.addEventListener('click', startGame)
+startBtnElement.addEventListener('click', startGame);
 
-function startGame() {
+function startGame() 
+{
+    startBtnElement.classList.add('hide');
+    counterDiv.classList.remove('hide');
+    gameBoardElement.classList.remove('hide');
+    fieldSizeLabel.classList.add('hide');
+    fieldSizeInput.classList.add('hide');
 
-  if(typeOfGame() == 0) {
-      loadGamePhotoPhoto()
-  }
-  else {
-    loadGamePhotoName()
-  }
-    startBtnElement.classList.add('hide')
-    counterDiv.classList.remove('hide')
-    gameBoardElement.classList.remove('hide')
     gameTypes.forEach(gameType => {
-      gameType.classList.add('hide')
+        gameType.classList.add('hide');
     })
+
+    typeOfGame() == 0 ? loadGamePhotoPhoto() : loadGamePhotoName();
 }
 
-function loadGamePhotoPhoto () {
+function loadGamePhotoPhoto () 
+{
   shuffledPictures = pictures.sort(() => Math.random() - .5)
-  switch (fieldSize.value) {
+  switch (fieldSizeInput.value) 
+  {
     case '4': 
-      for (let i=0; i < shuffledPictures.length; i++) {
-          const PhotoContiner = document.createElement('div')
-          PhotoContiner.classList.add('photo', 'backView')
-          PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i].url + ")"
-          gameBoardElement.appendChild(PhotoContiner)
+      for (let i=0; i < shuffledPictures.length; i++) 
+      {
+        const PhotoContiner = document.createElement('div')
+        PhotoContiner.classList.add('photo', 'backView')
+        PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i].url + ")"
+        gameBoardElement.appendChild(PhotoContiner)
+      }
+      for (let i=0; i < shuffledPictures.length; i++) 
+      {
+        const PhotoContiner = document.createElement('div')
+        PhotoContiner.classList.add('photo', 'backView')
+        PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i].url + ")"
+        gameBoardElement.appendChild(PhotoContiner)
       }
     break;
-    // case '5': 
-    //   for (let i=0; i < 25; i++) {
-    //       const PhotoContiner = document.createElement('div')
-    //       PhotoContiner.classList.add('photo', 'backView')
-    //       if(i >= 16) {
-    //         PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i-16].url + ")"
-    //       }
-    //       PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i].url + ")"
-    //       gameBoardElement.appendChild(PhotoContiner)
-    //   }
-    // break;
-    //     case '6': 
-    //   for (let i=0; i < 36; i++) {
-    //       const PhotoContiner = document.createElement('div')
-    //       PhotoContiner.classList.add('photo', 'backView')
-    //       if(i >= 16) {
-    //         PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i-16].url + ")"
-    //       } else {
-    //         PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i].url + ")"
-    //       }
-    //       gameBoardElement.appendChild(PhotoContiner)
-    //   }
-    // break;
-    //     case '7': 
-    //   for (let i=0; i < 49; i++) {
-    //       const PhotoContiner = document.createElement('div')
-    //       PhotoContiner.classList.add('photo', 'backView')
-    //       if(i >= 16) {
-    //         PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i-16].url + ")"
-    //       }
-    //       PhotoContiner.style.backgroundImage = "url(" + shuffledPictures[i].url + ")"
-    //       gameBoardElement.appendChild(PhotoContiner)
-    //   }
-    // break;
-
   }
 
   const photos = document.querySelectorAll('.photo')
@@ -126,7 +103,8 @@ function flipCard({target: clickedCard}) {
 
         // increase counter by 1
         counterValue++
-        counterElemnt.innerText = counterValue
+        counter.innerText = counterValue
+        // counterElemnt.innerText = counterValue
 
         // Problem biem photo bild vergleichen ...
         // console.log(cardTow.style.backgroundImage.includes(cardOne))
@@ -166,20 +144,8 @@ const pictures = [
         url: './photos/Apfel.jpg'
     },
     {
-        name: 'Apfel',
-        url: './photos/Apfel.jpg'
-    },
-    {
         name: 'Banana',
         url: './photos/Banana.jpg'
-    },
-    {
-        name: 'Banana',
-        url: './photos/Banana.jpg'
-    },
-    {
-        name: 'Himbeere',
-        url: './photos/Himbeere.jpg'
     },
     {
         name: 'Himbeere',
@@ -190,14 +156,6 @@ const pictures = [
         url: './photos/Melone.jpg'
     },
     {
-        name: 'Melone',
-        url: './photos/Melone.jpg'
-    },
-    {
-        name: 'Orange',
-        url: './photos/Orange.jpg'
-    },
-    {
         name: 'Orange',
         url: './photos/Orange.jpg'
     },
@@ -206,20 +164,8 @@ const pictures = [
         url: './photos/Pfirsich.jpg'
     },
     {
-        name: 'Pfirsich',
-        url: './photos/Pfirsich.jpg'
-    },
-    {
         name: 'Trauben',
         url: './photos/Trauben.jpg'
-    },
-    {
-        name: 'Trauben',
-        url: './photos/Trauben.jpg'
-    },
-    {
-        name: 'Zitrone',
-        url: './photos/Zitrone.jpg'
     },
     {
         name: 'Zitrone',
