@@ -9,6 +9,14 @@
     background-color: rgb(105, 152, 179);
 }
 
+.counter {
+  margin-bottom: 20px;
+  padding: 5px;
+  background-color: white;
+  border: solid white 1px;
+  border-radius: 5px;
+}
+
 .gameBoard {
     border: solid 1px black;
     border-radius: 10px;
@@ -31,12 +39,14 @@
     background-repeat: no-repeat;
     background-size: 70px 70px;
     box-shadow: 0 3px 10px rgab(0,0,0,0.1);
-    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .photo.backView {
     background-size: 0;
-    transform: rotateY(0);
+    color: white;
 }
 
 .photo:hover {
@@ -93,7 +103,7 @@
 }
 
 .controls {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
 }

@@ -74,14 +74,19 @@
 
             <div class="task">
                 <div class="controls">
-                    <button id="start-btn" class="start-btn btn">Start</button>
+                  <button id="start-btn" class="start-btn btn">Start</button><br>
+                  <label for="fieldSize">field Size (between 4 and 7):</label>
+                  <input type="number" id="fieldSize" name="fieldSize" min="4" max="7"><br>
+                  <input type="radio" id="photoPhoto" name="gameType" value="0" checked>
+                  <label for="photoPhoto" name ="gameType">Bild - Bild</label><br>
+                  <input type="radio" id="photoName" name="gameType" value="1">
+                  <label for="photoName" name ="gameType">Bild - Name</label><br>
                 </div>
                 <div class="counter hide" id="counterDiv">Counter: <span id="counter">0</span></div>
                 <div class="gameBoard hide" id="gameBoard">
                 </div>
                 <script src="task.js"></script>
             </div>
-
         </div>
     </body>
 </html>

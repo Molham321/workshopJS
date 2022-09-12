@@ -128,6 +128,44 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
+// function randomArithmeticTask() {
+
+//   let number1 = Math.random() * 500;
+//   let number2 = Math.random() * 500;
+//   let number3 = Math.random() * 500;
+//   let number4 = Math.random() * 500;
+//   let operation = Math.random() * 4;
+
+//   switch (operation) {
+//     case '0':
+//       operation = '+'
+//       break
+//     case '1':
+//       operation = '-'
+//       break
+//     case '2':
+//       operation = '*'
+//       break
+//     case '3':
+//       operation = '/'
+//       break
+//   }
+
+//   let result =
+//   {
+//     question: "What is " + number1 + ' ' + operation + ' ' + number2 + " =" ,
+//     answers: [
+//       {
+//         text: number1, correct: false,
+//         text: number2, correct: false,
+//         text: number3, correct: false,
+//         text: number4, correct: false
+//       }
+//     ]
+//   }  
+//   return result
+// }
+
 const questions = [
     {
         question: "What is 11 + 12 + 13 = ?",
