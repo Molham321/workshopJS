@@ -14,6 +14,9 @@ let timer, scoreValue;
 let isGameOver = false;
 let timeLeft = 30;
 
+/**
+ *  timer is stopped at 0 and the game will end
+ */
 function initTimer() 
 {
   if(timeLeft <= 0) 
@@ -27,28 +30,34 @@ function initTimer()
   timeTag.innerText = timeLeft;
 }
 
+/**
+ * start the game when start button clicked
+ */
 startButton.addEventListener('click', startGame);
-
-nextButton.addEventListener('click', () => {
-    isGameOver ? GameOver() :  setNextQuestion();
-})
 
 function startGame() 
 {
   isGameOver = false;
-  timeLeft = 30;
-  timer = setInterval(initTimer, 1000);
+  timeLeft = 30;                                        // start with 30 second
+  timer = setInterval(initTimer, 1000);                 // function for timer, so it counts down per second
 
-  scoreElement.innerText = '0';
-  scoreValue = parseInt(scoreElement.innerText);
+  scoreElement.innerText = '0';                         // start with score 0
+  scoreValue = parseInt(scoreElement.innerText);        // set score Value as int to work with it
 
-  startButton.classList.add('hide');
-  shuffledQuestions = RandomArithmeticTask();
+  startButton.classList.add('hide');                    // heid start btn
+  shuffledQuestions = RandomArithmeticTask();            //get a random Question 
 
-  currentQuestionIndex = 0;
-  questionContainerElement.classList.remove('hide');
-  setNextQuestion();
+  currentQuestionIndex = 0;                             // start with index 0
+  questionContainerElement.classList.remove('hide');    // show the Question Container
+  setNextQuestion();                                    // function to show the Question
 }
+
+/**
+ * show Question if the game not over 
+ */
+nextButton.addEventListener('click', () => {
+    isGameOver ? GameOver() :  setNextQuestion();
+})
 
 function setNextQuestion() 
 {
@@ -164,8 +173,20 @@ function RandomArithmeticTask() {
     }
   ]
 
-  // to do: random answers doesn't work
+  shuffle(result[0].answers)
+
   return result;
+}
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
 }
 
 function getRandomIntInclusive(min, max) 
