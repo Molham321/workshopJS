@@ -1,0 +1,130 @@
+﻿#wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+
+#departure {
+    min-width: 1780px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+#trainstation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 50px;
+    height: 130px;
+}
+#trainstationName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: deepskyblue;
+    font-family: "Book Antiqua";
+    margin-left:auto;
+    font-size: 30px;
+    width: auto;
+    height: 50px;
+    transform: rotate(-90deg);
+}
+
+[hidden] {
+    display: none;
+}
+
+.start {
+    display: flex;
+    margin: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: auto;
+
+    height: auto;
+}
+
+#start {
+    border: 5px solid darkblue;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background-color: dodgerblue;
+    color: yellow;
+    font-size: 35px;
+    font-family: "Book Antiqua";
+    padding-left: 5px;
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+#start:hover {
+    background-color: mediumblue;
+}
+
+#start:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+#tracks {
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    height: 110px;
+    width: 1700px;
+    overflow: hidden;
+}
+
+.track {
+    position: relative;
+    width: 1690px; /*1690*/
+    height: 14px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.train {
+    display: flex;
+    position: absolute;
+    animation-name: train;
+    /*animation-duration: 5s;*/
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    white-space: nowrap;
+    font-size: 12px;
+    font-family: "Book Antiqua";
+    height: 18px;
+    width: 100px;
+    background-color: red;
+    border: 2px solid black;
+    margin-top: -4px;
+    border-radius: 3px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#speed {
+    margin-left: auto;
+    margin-right: 3px
+}
+
+@keyframes train {
+    0% {
+        left: 0px;
+    }
+    100% {
+        left: 2000px;
+    }
+}
