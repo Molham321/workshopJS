@@ -20,13 +20,18 @@
 .gameBoard {
     border: solid 1px black;
     border-radius: 10px;
-    width: 300px;
-    height: 300px;
+    max-width: 550px;
+    max-height: 550px;
     padding: 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background-color: white;
+}
+
+.row {
+    width: 100%;
+    height: auto;
 }
 
 .photo {
@@ -42,10 +47,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-indent: -9999px;
+}
+
+.photo.name {
+    background-size: 0;
+    text-indent: 0;
 }
 
 .photo.backView {
     background-size: 0;
+    text-indent: -9999px;
     color: white;
 }
 
@@ -84,7 +96,6 @@
 }
 
 .btn {
-    --hue: var(--hue-neutral);
     border: 1px solid black, 100%, 30%;
     border-radius: 5px;
     padding: 5px 10px;
