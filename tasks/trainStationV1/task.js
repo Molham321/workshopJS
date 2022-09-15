@@ -81,7 +81,6 @@ class Train {
     }
 }
         
-
 const trainstation = new Trainstation("Jena", 5);
 let trains = [];
 document.querySelector("#start").addEventListener("click", function () {

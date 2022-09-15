@@ -33,9 +33,12 @@ class Trainstation {
     }
 
     setDelay() {
+        console.log(trains)
         trains.sort(function (a, b) {
             return a.delay - b.delay;
         });
+        console.log(trains)
+
         let lastDelay = [];
         let lastSpeed = [];
         let lastLength = [];
