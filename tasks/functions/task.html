@@ -58,31 +58,25 @@
                     <button id="checkInput">checkInput</button>
                     <button id="clearError">clearError</button>
 
-                    <p id="myName"></p>
-
+                    <p id="output"></p>
                 </div>
 
                 <div>
-
                     <label for="operations">Choose a operation:</label>
-                    
-                    <br>
-
-                    <input type="number" id="NumberInput1">
+                    <input type="number" id="NumberInput1" onkeydown="return event.keyCode !== 69">
 
                     <select name="operations" id="operations">
                         <option value="+">+</option>
                         <option value="-">-</option>
                         <option value="*">*</option>
                         <option value="/">/</option>
-                      </select>
+                    </select>
 
-                    <input type="number" id="NumberInput2"> =
+                    <input type="number" id="NumberInput2" onkeydown="return event.keyCode !== 69"> =
                     <input type="number" id="NumberOutput">
 
                     <button id="calculator">calculator</button>
-
-                    </div>
+                </div>
 
                 <script src="task.js"></script>
             </div>

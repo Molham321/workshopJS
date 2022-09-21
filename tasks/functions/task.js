@@ -1,89 +1,91 @@
-﻿function showError(error) {
-    let errorMessage = "Achtung, folgender Fehler ist aufgetreten: ";
-    errorMessage += error;
-    let errorWarning = document.getElementById("error-warnings");
-    errorWarning.innerText = errorMessage;
-    errorWarning.style.display = "block";
+﻿const inputElement = document.querySelector("#TextInput");
+const output = document.querySelector("#output");
+const errorWarning = document.querySelector("#error-warnings");
+const NumberInput1 = document.querySelector("#NumberInput1");
+const NumberInput2 = document.querySelector("#NumberInput2");
+const NumberOutput = document.querySelector("#NumberOutput");
+const operations = document.querySelector("#operations");
+
+/**
+ * Aufgabe 1
+ * show an error if the input does not contain a name or alert the name with a welcome message
+ */
+document.getElementById("greeting").addEventListener("click", greeting);
+
+/**
+ * Aufgabe 2
+ * checked whether the input is a number, if no then error, if yes then it is shown and multiplied by 2
+ */
+document.getElementById("checkInput").addEventListener("click", checkInput);
+
+/**
+ * Aufgabe 3
+ * error will cleared away
+ */
+document.getElementById("clearError").addEventListener("click", clearError);
+
+/**
+ * a simple calculator
+ */
+document.getElementById("calculator").addEventListener("click", calculator);
+
+/**
+ * shows the current error message
+ * @param {*} error
+ */
+function showError(error) {
+  let errorMessage = "Achtung, folgender Fehler ist aufgetreten: ";
+  errorMessage += error;
+
+  errorWarning.innerText = errorMessage;
+  errorWarning.style.display = "block";
 }
 
-// Aufgabe 1
+function greeting() {
+  if (inputElement.value === "" || !isNaN(inputElement.value)) {
+    showError("Enter your name!");
+  } else {
+    output.innerText = inputElement.value;
+    output.style.display = "block";
+    alert("Willkommen auf der Seite" + " " + inputElement.value);
+  }
+}
 
-document.getElementById('greeting').addEventListener('click', function() {
-    const name = document.getElementById("TextInput").value;
+function checkInput() {
+  isNaN(inputElement.value) || !inputElement.value
+    ? showError("please check your input and inter a number!")
+    : (inputElement.value *= 2);
+}
 
-    const myName = document.getElementById("myName");
-    myName.innerText = name;
-    myName.style.display = "block";
+function clearError() {
+  errorWarning.innerText = "";
+  errorWarning.style.display = "none";
+}
 
-     alert("Willkommen auf der Seite" + ' ' + name);
-})
+function calculator() {
+  const NumberInput1Value = NumberInput1.value;
+  const NumberInput2Value = NumberInput2.value;
+  const operationsValue = operations.value;
+  let NumberOutputValue = NumberOutput.value;
 
-// Aufgabe 2
-
-document.getElementById('checkInput').addEventListener('click', function() {
-    let name = document.getElementById("TextInput").value;
-    let myName = document.getElementById("myName");
-
-    
-    if(!isNaN(name)) 
-    {
-        myName.innerText = name * 2;
-        myName.style.display = "block";
-    }
-    else {
-        showError("please check your input");
-    }
-
-})
-
-// Aufgabe 3
-
-document.getElementById('clearError').addEventListener('click', function() {
-    let errorMessage = "Achtung, folgender Fehler ist aufgetreten: ";
-    errorMessage = "";
-    let errorWarning = document.getElementById("error-warnings");
-    errorWarning.innerText = errorMessage;
-    errorWarning.style.display = "none";
-})
-
-// Aufgabe 4
-
-document.getElementById('calculator').addEventListener('click', function() {
-    let NumberInput1 = document.getElementById('NumberInput1').value;
-    let NumberInput2 = document.getElementById('NumberInput2').value;
-    let NumberOutput = document.getElementById('NumberOutput').value;
-
-    let operations = document.getElementById('operations').value;
-
-    if(isNaN(NumberInput1) || isNaN(NumberInput2)) {
+  switch (operationsValue) {
+    case "+":
+      NumberOutputValue = NumberInput1Value * 1 + NumberInput2Value * 1;
+      break;
+    case "-":
+      NumberOutputValue = NumberInput1Value * 1 - NumberInput2Value * 1;
+      break;
+    case "*":
+      NumberOutputValue = NumberInput1Value * 1 * (NumberInput2Value * 1);
+      break;
+    case "/":
+      if (NumberInput2 * 1 === 0) {
         showError("something went wrong, please try again later");
-    }
-    else if(operations === "+") {
-        NumberOutput = (NumberInput1*1) + (NumberInput2*1);
-    }
-    else if(operations === "-"){
-        NumberOutput = (NumberInput1*1) - (NumberInput2*1);
-    }
-    else if(operations === "*"){
-        NumberOutput = (NumberInput1*1) * (NumberInput2*1);
-    }
-    else if(operations === "/"){
-        if(NumberInput2*1 === 0) showError("something went wrong, please try again later");
+      } else {
+        NumberOutputValue = (NumberInput1Value * 1) / (NumberInput2Value * 1);
+      }
+      break;
+  }
 
-        NumberOutput = (NumberInput1*1) / (NumberInput2*1);
-    }
-    else {
-        showError("something went wrong, please try again later");
-    }
-
-    document.getElementById('NumberOutput').value = NumberOutput;
-})
-
-
-
-
-
-
-
-
-
+  NumberOutput.value = NumberOutputValue;
+}

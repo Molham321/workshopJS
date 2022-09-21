@@ -1,12 +1,12 @@
 ﻿.task {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(105, 152, 179);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 800px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(105, 152, 179);
 }
 
 .counter {
@@ -18,108 +18,108 @@
 }
 
 .gameBoard {
-    border: solid 1px black;
-    border-radius: 10px;
-    max-width: 550px;
-    max-height: 550px;
-    padding: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: white;
+  border: solid 1px black;
+  border-radius: 10px;
+  max-width: 593px;
+  max-height: 584px;
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: white;
 }
 
 .row {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .photo {
-    border: solid 1px black;
-    border-radius: 7px;
-    width: 70px;
-    height: 70px;
-    margin: 1px;
-    background-color: #fff;
-    background-repeat: no-repeat;
-    background-size: 70px 70px;
-    box-shadow: 0 3px 10px rgab(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-indent: -9999px;
+  border: solid 1px black;
+  border-radius: 7px;
+  width: 70px;
+  height: 70px;
+  margin: 1px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 70px 70px;
+  box-shadow: 0 3px 10px rgab(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-indent: -9999px;
 }
 
 .photo.name {
-    background-size: 0;
-    text-indent: 0;
+  background-size: 0;
+  text-indent: 0;
 }
 
 .photo.backView {
-    background-size: 0;
-    text-indent: -9999px;
-    color: white;
+  background-size: 0;
+  text-indent: -9999px;
+  color: white;
 }
 
 .photo:hover {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
 
 .photo:active {
-    background-color: gray;
+  background-color: gray;
 }
 
 .photo.clicked {
-    background-color: black;
+  background-color: black;
 }
 
 .photo.shake {
-    animation: shake 0.35s ease-in-out;
+  animation: shake 0.35s ease-in-out;
 }
 
 @keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    20%{
-        transform: translateX(-13px);
-    }
-    40%{
-        transform: translateX(-13px);
-    }
-    60%{
-        transform: translateX(-8px);
-    }
-    80%{
-        transform: translateX(8px);
-    }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-13px);
+  }
+  40% {
+    transform: translateX(-13px);
+  }
+  60% {
+    transform: translateX(-8px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
 }
 
 .btn {
-    border: 1px solid black, 100%, 30%;
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: black;
-    outline: none;
+  border: 1px solid black, 100%, 30%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: black;
+  outline: none;
 }
 
 .btn:hover {
-    border-color: black;
+  border-color: black;
 }
 
 .start-btn {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 10px 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
 }
 
 .controls {
-    display: block;
-    justify-content: center;
-    align-items: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
-

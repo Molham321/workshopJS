@@ -73,18 +73,66 @@
             </div>
 
             <div class="task">
-                <div class="controls">
-                    <button id="start-btn" class="start-btn btn">Start</button><br>
-                    <label id="fieldSizeLabel" class="fieldSizeLabel" for="fieldSize">field Size (between 4 and 7):</label>
-                    <input type="number" class="fieldSizeInput" id="fieldSizeInput" name="fieldSize" value="4" min="4" max="7"><br>
-                    <input type="radio" id="photoPhoto" name="gameType" value="0" checked>
-                    <label for="photoPhoto" name ="gameType">Bild - Bild</label><br>
-                    <input type="radio" id="photoName" name="gameType" value="1">
-                    <label for="photoName" name ="gameType">Bild - Name</label><br>
+                <div id="wrapper">
+                    <div class="game" id="game">
+                    </div>
+                    <div>
+                        <div id="counterDiv">
+                            <input class="input" type="text" id="counter" value="0" disabled/>
+                        </div>
+                        <h3>Spielmodus</h3>
+                        <div>                
+                            <label><input type="radio" id="picture" name="layout" checked> Bild - Bild</label>
+                            <label><input type="radio" id="name" name="layout"> Bild - Name</label>
+                        </div>
+                        <h3>Spielgröße</h3>
+                        <div>
+                            <label>Feldgröße (zwischen 4 und 7):</label>
+                            <input type="range" id="fieldnumberSlider" min="4" max="7" value="4"><br/>
+                        </div>
+                        <h3>Abteilungen</h3>
+                        <div>
+                            <fieldset id="company">
+                                <input type="checkbox" id="Dako" checked/>
+                                <label for="Dako">Dako</label>
+                                <fieldset id="departments">
+                                    <input type="checkbox" id="Entwicklung" checked>
+                                    <label for="Entwicklung">Entwicklung</label>
+                                        <fieldset data-department="Entwicklung">
+                                            <input type="checkbox" id="Frontend" checked>
+                                            <label for="Frontend">Frontend</label>
+                                            <input type="checkbox" id="Backend" checked>
+                                            <label for="Backend">Backend</label>
+                                        </fieldset>
+                                    <input type="checkbox" id="Administration" checked>
+                                    <label for="Administration">Administration</label>
+                                        <fieldset data-department="Administration">
+                                            <input type="checkbox" id="Produktmanagement" checked>
+                                            <label for="Produktmanagement">Produktmanagement</label>
+                                            <fieldset data-department="Produktmanagement">
+                                                <input type="checkbox" id="Marketing" checked>
+                                                <label for="Marketing">Marketing</label>
+                                                <input type="checkbox" id="Support" checked>
+                                                <label for="Support">Support</label>
+                                            </fieldset>
+                                            <input type="checkbox" id="Vertrieb" checked>
+                                            <label for="Vertrieb">Vertrieb</label>
+                                            <input type="checkbox" id="Buchhaltung" checked>
+                                            <label for="Buchhaltung">Buchhaltung</label>
+                                            <input type="checkbox" id="Logistik" checked>
+                                            <label for="Logistik">Logistik</label>
+                                        </fieldset>
+                                </fieldset>
+                            </fieldset>
+                        </div>
+                        <div id="startDiv">
+                            <button id="start">GO!</button>
+                        </div>
+                    </div>
+                    <div id="notification">
+                    </div>
                 </div>
-                <div class="counter hide" id="counterDiv">Counter: <span id="counter"><b>0</b></span></div>
-                <div class="gameBoard hide" id="gameBoard"></div>
-                <script src="task.js"></script>
+            <script src="task.js"></script>
             </div>
         </div>
     </body>
