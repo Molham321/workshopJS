@@ -7,13 +7,36 @@ const fieldSizeInput = document.getElementById("fieldSizeInput");
 const counterDiv = document.getElementById("counterDiv");
 const counter = document.querySelector(".counter b");
 
-let shuffledPictures;
 let cardOne, cardTow;
 
-let counterValue = 0;
-let matchedCard = 0;
-let maxMamatchedCard = 0;
-let disableDeck = false;
+const game = {
+  game: [],
+  pause: false,
+  score: 0,
+  total: 0,
+  counter: 0,
+};
+
+startBtnElement.addEventListener("click", startGame);
+
+/**
+ * at StartGame we hide and show certain elements and load the selected game type
+ */
+function startGame() {
+  // hide elements
+  startBtnElement.classList.add("hide");
+  fieldSizeLabel.classList.add("hide");
+  fieldSizeInput.classList.add("hide");
+  gameTypes.forEach((gameType) => {
+    gameType.classList.add("hide");
+  });
+  // show other elements
+  counterDiv.classList.remove("hide");
+  gameBoardElement.classList.remove("hide");
+
+  // choose game mode
+  typeOfGame() == 0 ? loadGamePhotoPhoto() : loadGamePhotoName();
+}
 
 // gameTypes[0] == Photo-Photo // gameTypes[1] == Photo- Nmae
 function typeOfGame() {
@@ -22,118 +45,16 @@ function typeOfGame() {
   }
 }
 
-//-----------------------------------------------------------------
-
-startBtnElement.addEventListener("click", startGame);
-
-/**
- * at StartGame we hide and show certain elements and load the selected game type
- */
-function startGame() {
-  counterDiv.classList.remove("hide");
-  gameBoardElement.classList.remove("hide");
-
-  startBtnElement.classList.add("hide");
-  fieldSizeLabel.classList.add("hide");
-  fieldSizeInput.classList.add("hide");
-  gameTypes.forEach((gameType) => {
-    gameType.classList.add("hide");
-  });
-
-  typeOfGame() == 0 ? loadGamePhotoPhoto() : loadGamePhotoName();
-}
-
-/**
- * the playing field is built dynamically
- */
-function loadGame() {
-  switch (fieldSizeInput.value) {
-    case "4":
-      maxMamatchedCard = 8;
-      for (let i = 0; i < 4; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        gameBoardElement.appendChild(row);
-        for (let j = 0; j < 4; j++) {
-          const PhotoContiner = document.createElement("div");
-          PhotoContiner.classList.add("photo", "backView");
-          gameBoardElement.appendChild(PhotoContiner);
-        }
-      }
-      break;
-
-    case "5":
-      maxMamatchedCard = 16;
-      for (let i = 0; i < 4; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        gameBoardElement.appendChild(row);
-        for (let j = 0; j < 8; j++) {
-          const PhotoContiner = document.createElement("div");
-          PhotoContiner.classList.add("photo", "backView");
-          gameBoardElement.appendChild(PhotoContiner);
-        }
-      }
-      break;
-
-    case "6":
-      maxMamatchedCard = 24;
-      for (let i = 0; i < 6; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        gameBoardElement.appendChild(row);
-        for (let j = 0; j < 8; j++) {
-          const PhotoContiner = document.createElement("div");
-          PhotoContiner.classList.add("photo", "backView");
-          gameBoardElement.appendChild(PhotoContiner);
-        }
-      }
-      break;
-
-    case "7":
-      maxMamatchedCard = 56;
-      for (let i = 0; i < 8; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        gameBoardElement.appendChild(row);
-        for (let j = 0; j < 8; j++) {
-          const PhotoContiner = document.createElement("div");
-          PhotoContiner.classList.add("photo", "backView");
-          gameBoardElement.appendChild(PhotoContiner);
-        }
-      }
-      break;
-  }
-}
-
-// ---------------------------------------------------------------------
-
 /**
  * add pictures and Names to divs
  */
 function loadGamePhotoPhoto() {
-  // generate all divs
-  loadGame();
-  //
-  shuffledPictures = pictures.sort(() => Math.random() - 0.5);
-  let i = 0;
+  addBoxes();
   const cards = document.querySelectorAll(".photo");
-  cards.forEach((card) => {
-    if (i >= 8) {
-      // 8 because we have 8 pictures in total
-      i = 0; // 0 so we stay in the loop
-      shuffledPictures = pictures.sort(() => Math.random() - 0.5);
-      card.style.backgroundImage = "url(" + shuffledPictures[i].url + ")";
-    } else {
-      card.style.backgroundImage = "url(" + shuffledPictures[i].url + ")";
-    }
-    card.innerText = shuffledPictures[i].name;
-    i++;
-  });
 
-  const photos = document.querySelectorAll(".photo");
-  photos.forEach((photo) => {
-    photo.addEventListener("click", flipCard);
+  cards.forEach((card, ind) => {
+    setPhotoAndName(card, ind);
+    card.addEventListener("click", flipCard);
   });
 }
 
@@ -141,63 +62,77 @@ function loadGamePhotoPhoto() {
  * add pictures and Names to divs
  */
 function loadGamePhotoName() {
-  loadGame();
-  shuffledPictures = pictures.sort(() => Math.random() - 0.5);
-  let i = 0;
-  let counter = 0;
-
+  addBoxes();
   const cards = document.querySelectorAll(".photo");
-  let numberOfPictures = cards.length;
+  let notice = [];
 
-  cards.forEach((card) => {
-    if (i >= 8) {
-      i = 0;
-      shuffledPictures = pictures.sort(() => Math.random() - 0.5);
+  cards.forEach((card, ind) => {
+    if (!notice.includes(game.game[ind])) {
+      setPhotoAndName(card, ind);
+    } else {
+      setPhotoAndName(card, ind);
+      card.classList.add("name");
     }
-    card.style.backgroundImage = "url(" + shuffledPictures[i].url + ")";
-    card.innerText = shuffledPictures[i].name;
-
-    // if (numberOfPictures / 2 > counter) {
-    //   card.classList.add("name"); // show the name but not the photo in css
-    // }
-
-    i++;
-    counter++;
+    notice.push(game.game[ind]);
+    card.addEventListener("click", flipCard);
   });
+}
 
-  for (let i = 0; i < cards.length; i++) {
-    console.log(cards[i]);
-    if (
-      (i > 7 && i <= 15) ||
-      (i > 23 && i <= 31) ||
-      (i > 39 && i <= 47) ||
-      (i > 55 && i <= 63)
-    ) {
-      cards[i].classList.add("name");
+function setPhotoAndName(card, ind) {
+  card.style.backgroundImage = "url(" + game.game[ind].url + ")";
+  card.innerText = game.game[ind].name;
+}
+
+function addBoxes() {
+  loadGame(); // generate all divs
+  pictures.sort(() => {
+    return Math.random() - 0.5;
+  });
+  const temp = [];
+  for (let i = 0; i < game.total; i++) {
+    temp.push(pictures[i]);
+  }
+  game.game = temp.concat(temp);
+
+  game.game.sort(() => {
+    return Math.random() - 0.5;
+  });
+}
+
+function maker(eleType, parent, html, cla) {
+  const ele = document.createElement("div");
+  ele.classList.add(cla);
+  ele.innerHTML = html;
+  return parent.appendChild(ele);
+}
+
+/**
+ * the playing field is built dynamically
+ */
+function loadGame() {
+  game.total = Math.floor((fieldSizeInput.value * fieldSizeInput.value) / 2);
+  for (let i = 0; i < fieldSizeInput.value; i++) {
+    const row = maker("div", gameBoardElement, " ", "row");
+    for (let j = 0; j < fieldSizeInput.value; j++) {
+      const PhotoContiner = maker("div", gameBoardElement, " ", "photo");
+      PhotoContiner.classList.add("backView");
     }
   }
-
-  // ShuffleChildern()
-
-  const photos = document.querySelectorAll(".photo");
-  photos.forEach((photo) => {
-    photo.addEventListener("click", flipCard);
-  });
 }
 
 /**
  * click a card/photo
  */
 function flipCard({ target: clickedCard }) {
-  if (clickedCard !== cardOne && !disableDeck) {
+  if (clickedCard !== cardOne && !game.pause) {
     clickedCard.classList.remove("backView"); // show the card on click
     if (!cardOne) {
       return (cardOne = clickedCard);
     }
-    disableDeck = true;
+    game.pause = true;
     cardTow = clickedCard;
-    counterValue++;
-    counter.innerText = counterValue;
+    game.counter++;
+    counter.innerText = game.counter;
     matchCard(cardOne, cardTow);
   }
 }
@@ -210,25 +145,25 @@ function matchCard(img1, img2) {
     cardOne.removeEventListener("click", flipCard);
     cardTow.removeEventListener("click", flipCard);
     cardOne = cardTow = "";
-    matchedCard++;
+    game.score++;
     checkWinning();
-    return (disableDeck = false);
+    return (game.pause = false);
   }
 
   setTimeout(() => {
     cardOne.classList.add("backView");
     cardTow.classList.add("backView");
     cardOne = cardTow = "";
-    disableDeck = false;
-  }, 1200);
+    game.pause = false;
+  }, 500);
 }
 
 /**
  * check if the game over
  */
 function checkWinning() {
-  if (matchedCard === maxMamatchedCard) {
-    return alert("du hast gewonnen mit " + counterValue + " Züge");
+  if (game.score === game.total) {
+    return alert("du hast gewonnen mit " + game.counter + " Züge");
   }
 }
 
@@ -275,5 +210,85 @@ const pictures = [
     id: 8,
     name: "Zitrone",
     url: "./photos/Zitrone.jpg",
+  },
+  {
+    id: 9,
+    name: "Karotte",
+    url: "./photos/Karotte.jpg",
+  },
+  {
+    id: 10,
+    name: "Tomate",
+    url: "./photos/Tomate.jpg",
+  },
+  {
+    id: 11,
+    name: "Salat",
+    url: "./photos/Salat.jpg",
+  },
+  {
+    id: 12,
+    name: "Kartoffel",
+    url: "./photos/Kartoffel.jpg",
+  },
+  {
+    id: 13,
+    name: "Ingwer",
+    url: "./photos/Ingwer.jpg",
+  },
+  {
+    id: 14,
+    name: "Gurke",
+    url: "./photos/Gurke.jpg",
+  },
+  {
+    id: 15,
+    name: "Ananas",
+    url: "./photos/Ananas.jpg",
+  },
+  {
+    id: 16,
+    name: "Aprikose",
+    url: "./photos/Aprikose.jpg",
+  },
+  {
+    id: 17,
+    name: "Artischocke",
+    url: "./photos/Artischocke.jpg",
+  },
+  {
+    id: 18,
+    name: "Avocado",
+    url: "./photos/Avocado.jpg",
+  },
+  {
+    id: 19,
+    name: "Birnen",
+    url: "./photos/Birnen.jpg",
+  },
+  {
+    id: 20,
+    name: "Blumenkohl",
+    url: "./photos/Blumenkohl.jpg",
+  },
+  {
+    id: 21,
+    name: "Brokkoli",
+    url: "./photos/Brokkoli.jpg",
+  },
+  {
+    id: 22,
+    name: "Chinakohl",
+    url: "./photos/Chinakohl.jpg",
+  },
+  {
+    id: 23,
+    name: "Kirschen",
+    url: "./photos/Kirschen.jpg",
+  },
+  {
+    id: 24,
+    name: "Knoblauch",
+    url: "./photos/Knoblauch.jpg",
   },
 ];

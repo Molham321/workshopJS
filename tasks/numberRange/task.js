@@ -1,8 +1,13 @@
-﻿let errorWarning = document.getElementById("error-warnings");
+﻿let limitationMaxInput1 = document.getElementById("limitation_1");
+let limitationMaxInput2 = document.getElementById("limitation_2");
+let limitationMinInput1 = document.getElementById("limitation_3");
+let limitationMinInput2 = document.getElementById("limitation_4");
+let input1 = document.getElementById("input1");
+let input2 = document.getElementById("input2");
+let errorWarning = document.getElementById("error-warnings");
 let buttons = document.querySelectorAll(".buttons");
 let toEmpty = document.getElementById("toEmpty");
 let hide = document.getElementById("hide");
-let select = document.getElementById("select");
 let errors = [];
 let error;
 
@@ -32,42 +37,52 @@ toEmpty.addEventListener("click", Empty);
 hide.addEventListener("click", Hide);
 
 // Wird in eine der beiden Felder ein Buchstabe oder Sonderzeichen eingetragen, erscheint eine Warnung in der Hinweisbox
-const inputsValue = document.querySelectorAll(".inputsValue");
+let inputsValue = document.querySelectorAll(".inputsValue");
 
 inputsValue.forEach((inputValue) => {
   inputValue.addEventListener("keyup", () => {
     error = false;
 
+    let v1, v2, v3, v4;
+    let errorMessage = "";
+
+    v1 = !limitationMaxInput1.value ? 9999999999 : limitationMaxInput1.value;
+    v2 = !limitationMaxInput2.value ? 9999999999 : limitationMaxInput2.value;
+    v3 = !limitationMinInput1.value ? 0 : limitationMinInput1.value;
+    v4 = !limitationMinInput2.value ? 0 : limitationMinInput2.value;
+
     if (isNaN(inputValue.value)) {
       error = true;
-      if (!errors.includes("Input must be a Number")) {
-        errors.push("Input must be a Number");
-      }
+      errorMessage = `Input must be a Number`;
+      !errors.includes(errorMessage) ? errors.push(errorMessage) : "";
+    } else {
+      errors = errors.filter((ele) => {
+        ele !== errorMessage;
+      });
     }
 
-    // ====================================================
-
-    let i = select.selectedIndex;
-    let value = select.options[i].text;
-
-    if (value === "Min(Input1)") {
-      MinInput1();
+    if (input1.value > parseInt(v1)) {
+      error = true;
+      errorMessage = `Error: Max input 1 is ${v1}!`;
+      !errors.includes(errorMessage) ? errors.push(errorMessage) : "";
     }
 
-    if (value === "Max(Input1)") {
-      MaxInput1();
+    if (input2.value > parseInt(v2)) {
+      error = true;
+      errorMessage = `Error: Max input 2 is ${v2}!`;
+      !errors.includes(errorMessage) ? errors.push(errorMessage) : "";
     }
 
-    if (value === "Min(Input2)") {
-      MinInput2();
+    if (input1.value < parseInt(v3)) {
+      error = true;
+      errorMessage = `Error: Min input 1 is ${v3}!`;
+      !errors.includes(errorMessage) ? errors.push(errorMessage) : "";
     }
 
-    if (value === "Max(Input2)") {
-      MaxInput2();
-    }
-
-    if (value === "Input1 less Input2") {
-      Input1LessInput2();
+    if (input2.value < parseInt(v4)) {
+      error = true;
+      errorMessage = `Error: Min input 2 is ${v4}!`;
+      !errors.includes(errorMessage) ? errors.push(errorMessage) : "";
     }
 
     if (!error) {
@@ -80,8 +95,6 @@ inputsValue.forEach((inputValue) => {
     } else {
       showError(errors);
     }
-
-    console.log(error);
   });
 });
 
@@ -95,54 +108,4 @@ function Hide() {
   buttons.forEach((button) => {
     button.style.display = "none";
   });
-}
-
-function MinInput1() {
-  if (inputsValue[0].value < 99) {
-    if (!errors.includes("input1 must be greater than two")) {
-      errors.push("input1 must be greater than two");
-      showError(errors);
-    }
-    error = true;
-  }
-}
-
-function MaxInput1() {
-  if (inputsValue[0].value > 99999999) {
-    if (!errors.includes("input must be less than 8")) {
-      errors.push("input must be less than 8");
-      showError(errors);
-    }
-    error = true;
-  }
-}
-
-function MinInput2() {
-  if (inputsValue[1].value < 99) {
-    if (!errors.includes("input2 must be greater than two")) {
-      errors.push("input2 must be greater than two");
-      showError(errors);
-    }
-    error = true;
-  }
-}
-
-function MaxInput2() {
-  if (inputsValue[1].value > 99999999) {
-    if (!errors.includes("input2 must be less than 8")) {
-      errors.push("input2 must be less than 8");
-      showError(errors);
-    }
-    error = true;
-  }
-}
-
-function Input1LessInput2() {
-  if (inputsValue[0].value > inputsValue[1].value) {
-    if (!errors.includes("input1 must be less than input2")) {
-      errors.push("input1 must be less than input2");
-      showError(errors);
-    }
-    error = true;
-  }
 }

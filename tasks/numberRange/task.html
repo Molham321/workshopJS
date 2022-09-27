@@ -51,22 +51,18 @@
                     <button id="hide">Ausblenden</button>
                 </div>
                 <!-- Erstelle 2 Inputfelder, die nebeneinander liegen -->
+                <p>Enter some values:</p>
                 <div class="inputs">
-                <label for="input1">Input 1:</label>
-                <input id="input1" class="inputsValue" type="text">
-                <label for="input2">Input 2:</label>
-                <input id="input2" class="inputsValue" type="text">
+                <input id="input1" class="inputsValue" type="text" placeholder="Input 1:">
+                <input id="input2" class="inputsValue" type="text" placeholder="Input 2:">
                 </div>
                 <!-- Erstelle ein div-Element für Optionen -->
-                <label for="choices">choices:</label>
-                <div class="select">
-                    <select name="choices" id="select" size="5">      
-                        <option selected value="Min(Input1)">Min(Input1)</option>
-                        <option value="Max(Input1)">Max(Input1)</option>
-                        <option value="Min(Input2)">Min(Input2)</option>
-                        <option value="Max(Input2)">Max(Input2)</option>
-                        <option value="Input1 less Input2"> Input1 less Input2</option>
-                    </select>
+                <p>define your limitation:</p>
+                <div class="limitation">
+                    <input id="limitation_1" class="limitationValue" type="number" placeholder="Max(Input1)" onkeydown="return event.keyCode !== 69">
+                    <input id="limitation_2" class="limitationValue" type="number" placeholder="Max(Input2)" onkeydown="return event.keyCode !== 69">
+                    <input id="limitation_3" class="limitationValue" type="number" placeholder="Min(Input1)" onkeydown="return event.keyCode !== 69">
+                    <input id="limitation_4" class="limitationValue" type="number" placeholder="Min(Input1)" onkeydown="return event.keyCode !== 69">
                 </div>
                 <script src="task.js"></script>
             </div>

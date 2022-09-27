@@ -1,18 +1,29 @@
-﻿#error-warnings,
+﻿/* buttons in the error box */
+#error-warnings,
 .buttons {
   border: 1px solid #f00;
   padding: 5px;
   display: none;
 }
 
-select {
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-  outline: none;
+/* button styling */
+
+button,
+[type="text"],
+[type="number"] {
+  background-color: white;
+  color: black;
+  border: 2px solid gray;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 2px 1px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: gray;
+  color: white;
 }

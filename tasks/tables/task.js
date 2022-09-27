@@ -94,9 +94,12 @@ function sort() {
  * @returns count an array in which we separate and count the items
  */
 function countdown() {
-  let itemArr = itemInput.value.split(",").map((element) => element.trim());
+  let itemArr = itemInput.value.split(",").map((element) => {
+    return element.trim();
+  });
 
   itemArr.forEach((element) => {
+    if (element == "") return;
     if (count[element]) {
       count[element]++;
     } else {
