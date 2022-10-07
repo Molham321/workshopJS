@@ -1,2 +1,3 @@
-export { __chunk } from "./chunk";
-export { __compact } from "./compact";
+export { chunk } from './chunk';
+export { compact } from './compact';
+export { isFund } from './isFund';

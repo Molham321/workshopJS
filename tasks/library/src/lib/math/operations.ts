@@ -5,23 +5,25 @@
  * @param secondNumber second Number
  * @returns the math result
  */
-const __operations = (
+export const operations = (
   firstNumber: number,
-  operation: string = "+",
-  secondNumber: number
+  operation: string = '+',
+  secondNumber: number,
 ): number => {
   switch (operation) {
-    case "+":
+    case '+':
       return firstNumber + secondNumber;
-    case "-":
+    case '-':
       return firstNumber - secondNumber;
-    case "*":
+    case '*':
       return firstNumber * secondNumber;
-    case "/":
+    case '/':
       return firstNumber / secondNumber;
     default:
       return -1;
   }
 };
 
-export { __operations };
+export const add = (left: number, right: number): number => {
+  return left + right;
+};

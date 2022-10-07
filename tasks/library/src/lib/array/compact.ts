@@ -7,8 +7,6 @@
  * __compact([1, 3, 0, false, 2, '', 4, undefined, 5, NaN]):
  * // => [1,3,2,4,5]
  */
-const __compact = (array: any[]): any[] => {
+export const compact = (array: any[]): any[] => {
   return array.filter((item) => !!item);
 };
-
-export { __compact };

@@ -1,29 +1,12 @@
-export type Attribut = {
-  qualifiedName: string;
-  value: string;
-};
+import type { TAttribut } from './TAttribut';
 
-//todo: .....
-// export const __setAttributes = (
-//   element: HTMLElement,
-//   ...Attribut: Attribut[]
-// ): void => {
-//   Attribut.forEach((Attribut) => {
-//     element.setAttribute(Attribut.qualifiedName, Attribut.value);
-//   });
-// };
-
-/**
- * set one or more class name to element
- * @param element a HTMLElement
- * @param classNames an Array of all class Name
- *
- */
-export const __setClassName = (
+export const setAttributes = (
   element: HTMLElement,
-  ...classNames: string[]
-): void => {
-  classNames.forEach((classname) => {
-    element.classList.add(classname);
+  Attribut: TAttribut[],
+): HTMLElement => {
+  Attribut.forEach((attribut) => {
+    element.setAttribute(attribut.qualifiedName, attribut.value);
   });
+
+  return element;
 };
