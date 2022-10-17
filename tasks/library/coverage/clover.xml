@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1665486565955" clover="3.2.0">
+  <project timestamp="1665486565955" name="All files">
+    <metrics statements="14" coveredstatements="14" conditionals="5" coveredconditionals="4" methods="4" coveredmethods="4" elements="23" coveredelements="22" complexity="0" loc="14" ncloc="14" packages="1" files="3" classes="3"/>
+    <file name="chunk.ts" path="C:\Users\pra.eins\Desktop\Workshop\Workshop\tasks\library\src\lib\array\chunk.ts">
+      <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
+      <line num="11" count="1" type="cond" truecount="0" falsecount="1"/>
+      <line num="12" count="3" type="cond" truecount="3" falsecount="0"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="16" count="5" type="stmt"/>
+      <line num="18" count="2" type="stmt"/>
+    </file>
+    <file name="compact.ts" path="C:\Users\pra.eins\Desktop\Workshop\Workshop\tasks\library\src\lib\array\compact.ts">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="10" type="stmt"/>
+    </file>
+    <file name="isFund.ts" path="C:\Users\pra.eins\Desktop\Workshop\Workshop\tasks\library\src\lib\array\isFund.ts">
+      <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="2" type="stmt"/>
+      <line num="9" count="11" type="cond" truecount="1" falsecount="0"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

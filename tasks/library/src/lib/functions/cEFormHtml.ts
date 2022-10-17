@@ -11,8 +11,8 @@
  * => new List on body document
  * `)
  */
-export const cEFormHtml = (html: string) => {
+export const cEFormHtml = (html: string): HTMLTemplateElement => {
   const template = document.createElement('template');
   template.innerHTML = html.trim();
-  return template.content.firstElementChild;
+  return template.content.firstElementChild as HTMLTemplateElement;
 };

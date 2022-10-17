@@ -8,8 +8,8 @@
  * __chunk([1, 2, 3, 4, 5], 2):
  * // => [[1, 2], [3, 4], [5]]
  */
-export const chunk = (array: any[], size = 1): any[] => {
-  if (!Array.isArray(array) || !array.length) return [];
+ export const chunk = (array: any[], size = 1): any[] => {
+  if (!Array.isArray(array) || !array.length) return[];
   let result: any[] = [];
   let index: number = 0;
   while (index < array.length) {

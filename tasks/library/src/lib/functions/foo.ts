@@ -1,6 +1,5 @@
-import      { getElement }  from "./getElement";
-import      { cElement }    from "./cElement";
-import type { TElement }    from "./TElement";
+import { getElement } from "./getElement";
+import { cElementV02 } from "./cElementV02";
 
 export const foo = () => {
   const companies = [
@@ -41,89 +40,71 @@ export const foo = () => {
 
   const container = getElement(".company-list-wrapper");
 
-  const cmpyList    = cElement({ elementType: "ul"   , parent: container });
-  const firstLi     = cElement({ elementType: "li"   , parent: cmpyList });
-  const firstLabel  = cElement({ elementType: "label", parent: firstLi });
+  const cmpyList = cElementV02("ul", container);
+  const firstLi = cElementV02("li", cmpyList);
+  const firstLabel = cElementV02("label", firstLi);
+  const selectAllBox = cElementV02(
+    "span",
+    firstLabel,
+    undefined,
+    "Select all",
+    ["class", "checkbutton"]
+  );
 
-  const E_selectAllBox: TElement = {
-    elementType: "span",
-    textContent: "Select all",
-    parent: firstLabel,
-    attributs: [{ qualifiedName: "class", value: "checkbutton" }],
-  };
+  selectAllBox.addEventListener("click", () => setCheckBox(true));
 
-  const selectAllBox = cElement(E_selectAllBox);
-  selectAllBox.addEventListener("click", () => {
-    setCheckBox(true);
-  });
-
-  const E_deselectAllBox: TElement = {
-    elementType: "span",
-    textContent: "Deselect all",
-    parent: firstLabel,
-    attributs: [{ qualifiedName: "class", value: "checkbutton" }],
-  };
-
-  const deselectAllBox = cElement(E_deselectAllBox);
-  deselectAllBox.addEventListener("click", () => {
-    setCheckBox(false);
-  });
-
-  function setCheckBox(checked: boolean) {
-    const allCheckboxes = cmpyList.querySelectorAll('input[type="checkbox"]');
-    for (let i = 0; i < allCheckboxes.length; i++) {
-      const item = allCheckboxes[i];
-      (item as HTMLInputElement).checked = checked;
-      const li = item.closest("li") as HTMLElement;
-      checked ? li.classList.add("active-company") : li.classList.remove("active-company");
-    }
-  }
+  const deselectAllBox = cElementV02(
+    "span",
+    firstLabel,
+    undefined,
+    "Deselect all",
+    ["class", "checkbutton"]
+  );
+  deselectAllBox.addEventListener("click", () => setCheckBox(false));
 
   for (let i = 0; i < companySelection.items.length; i++) {
     const item = companySelection.items[i];
-    const E_li: TElement = {
-      elementType: "li",
-      parent: cmpyList,
-      attributs: [
-        {
-          qualifiedName: "data-filtervalue",
-          value: `${item.label.toLowerCase()}  ${
-            item.title?.toLowerCase() ?? ""
-          }`,
-        },
-        {
-          qualifiedName: "data-value",
-          value: item.value.toString(),
-        },
+
+    const li = cElementV02(
+      "li",
+      cmpyList,
+      undefined,
+      undefined,
+      [
+        "data-filtervalue",
+        `${item.label.toLowerCase()}  ${item.title?.toLowerCase() ?? ""}`,
       ],
-    };
-    const li = cElement(E_li);
-    const label = cElement({ elementType: "label", parent: li });
+      ["data-value", item.value.toString()]
+    );
 
-    const E_checkbox: TElement = {
-      elementType: "input",
-      parent: label,
-      attributs: [{ qualifiedName: "type", value: "checkbox" }],
-    };
-    const checkbox = cElement(E_checkbox);
+    const label = cElementV02("label", li);
+    const checkbox = cElementV02("input", label, undefined, undefined, [
+      "type",
+      "checkbox",
+    ]);
 
-    checkbox.addEventListener("click", function () {
-      if (li.classList.contains("active-company")) {
-        li.classList.remove("active-company");
-      } else {
-        li.classList.add("active-company");
-      }
-    });
+    checkbox.addEventListener("click", () =>
+      li.classList.contains("active-company")
+        ? li.classList.remove("active-company")
+        : li.classList.add("active-company")
+    );
 
     if (companies.find((c) => c.id === item.value)) {
       checkbox.setAttribute("checked", "checked");
       li.classList.add("active-company");
     }
 
-    const span = cElement({
-      elementType: "span",
-      textContent: item.label,
-      parent: label,
-    });
+    cElementV02("span", label, undefined, item.label);
   }
+
+  let setCheckBox = (checked: boolean): void => {
+    const allCheckboxes = cmpyList.querySelectorAll('input[type="checkbox"]');
+    allCheckboxes.forEach((item) => {
+      (item as HTMLInputElement).checked = checked;
+      const li = item.closest("li") as HTMLElement;
+      checked
+        ? li.classList.add("active-company")
+        : li.classList.remove("active-company");
+    });
+  };
 };

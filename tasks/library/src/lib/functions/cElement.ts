@@ -9,8 +9,6 @@ import type { TElement } from "./TElement";
 export const cElement = (element: TElement): HTMLElement => {
   const newElement = document.createElement(element.elementType);
   if (element.innerHTML) newElement.innerHTML = element.innerHTML.trim();
-  if (element.id) newElement.id = element.id;
-  if (element.class) newElement.classList.add(element.class);
   if (element.textContent) newElement.textContent = element.textContent;
   if (element.attributs) setAttributes(newElement, element.attributs);
   if (element.parent) element.parent.appendChild(newElement);

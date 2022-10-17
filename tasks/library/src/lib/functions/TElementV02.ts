@@ -1,6 +1,6 @@
 import type { TAttribut } from "./TAttribut";
 
-export type TElement = {
+export type TElementV02 = {
   elementType: string;
   innerHTML?: string;
   textContent?: string;
