@@ -1,3 +1,5 @@
-import { foo } from "./lib";
+import { foo2 } from "./lib/functions/foo copy 2";
+foo2();
 
-foo();
+// import { foo } from "./lib/functions/foo";
+// foo();

@@ -1,34 +1,47 @@
-export class s {
-  select: string;
-  constructor(select: string) {
-    this.select = select;
-  }
-}
+import { setAttributes } from "./setAttributes";
+import { TElementV2 } from "./TElement";
 
-/**
- * to create a new element in the document
- * @param elementType a sting z.b "div"
- * @param innerHTML a sting innerHTML z.b <p>HelloWorld</p>
- * @param textContent a sting textContent z.b HelloWorld
- * @param parent a HTMLElement to appendChild z.b doucment.body
- * @param attributs array of string tow string first one is the qualifiedName and the scound one is the value
- * @returns new HTMLElement element
- */
-export const cElementV02 = (
-  elementType: string,
-  parent?: HTMLElement,
-  innerHTML?: string,
-  textContent?: string,
-  ...attributs: any[]
-): HTMLElement => {
-  const newElement = document.createElement(elementType);
-  if (innerHTML) newElement.innerHTML = innerHTML.trim();
-  if (textContent) newElement.textContent = textContent;
-  if (attributs) {
-    attributs.forEach((a) => {
-      newElement.setAttribute(a[0], a[1]);
-    });
+export class CC {
+  public selector: string;
+  element: HTMLElement;
+  constructor(selector: string) {
+    this.selector = selector;
+    this.element = document.createElement(this.selector);
   }
-  if (parent) parent.appendChild(newElement);
-  return newElement;
-};
+
+  public addChild = (child: CC) => {
+    return child;
+  };
+
+  public getParent = () => {
+    return this.element.parentElement;
+  };
+
+  public find = (search: string) => {
+    return this.getHTMLElement().querySelectorAll(search);
+  };
+
+  public ccAppend = () => {
+    document.body.appendChild(this.element);
+    return this;
+  };
+
+  public getHTMLElement = () => {
+    return this.element;
+  };
+
+  public ccAppendChild = (...element: TElementV2[]) => {
+    element.forEach((e) => {
+      const newChild = document.createElement(e.eleT);
+      // if (e.click) {e.addEventListener("click", e.click);}
+      if (e.textContent) newChild.textContent = e.textContent;
+      if (e.attributs) {
+        setAttributes(newChild, e.attributs);
+      }
+
+      this.getHTMLElement().appendChild(newChild);
+    });
+
+    return this;
+  };
+}

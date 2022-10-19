@@ -43,23 +43,17 @@ export const foo = () => {
   const cmpyList = cElementV02("ul", container);
   const firstLi = cElementV02("li", cmpyList);
   const firstLabel = cElementV02("label", firstLi);
-  const selectAllBox = cElementV02(
-    "span",
-    firstLabel,
-    undefined,
-    "Select all",
-    ["class", "checkbutton"]
-  );
+  const selectAllBox = cElementV02("span", firstLabel, "Select all", [
+    "class",
+    "checkbutton",
+  ]);
 
   selectAllBox.addEventListener("click", () => setCheckBox(true));
 
-  const deselectAllBox = cElementV02(
-    "span",
-    firstLabel,
-    undefined,
-    "Deselect all",
-    ["class", "checkbutton"]
-  );
+  const deselectAllBox = cElementV02("span", firstLabel, "//Deselect all", [
+    "class",
+    "checkbutton",
+  ]);
   deselectAllBox.addEventListener("click", () => setCheckBox(false));
 
   for (let i = 0; i < companySelection.items.length; i++) {
@@ -69,7 +63,6 @@ export const foo = () => {
       "li",
       cmpyList,
       undefined,
-      undefined,
       [
         "data-filtervalue",
         `${item.label.toLowerCase()}  ${item.title?.toLowerCase() ?? ""}`,
@@ -78,7 +71,7 @@ export const foo = () => {
     );
 
     const label = cElementV02("label", li);
-    const checkbox = cElementV02("input", label, undefined, undefined, [
+    const checkbox = cElementV02("input", label, undefined, [
       "type",
       "checkbox",
     ]);
@@ -94,7 +87,7 @@ export const foo = () => {
       li.classList.add("active-company");
     }
 
-    cElementV02("span", label, undefined, item.label);
+    cElementV02("span", label, item.label);
   }
 
   let setCheckBox = (checked: boolean): void => {

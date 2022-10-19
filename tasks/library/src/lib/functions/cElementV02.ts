@@ -10,12 +10,10 @@
 export const cElementV02 = (
   elementType: string,
   parent?: HTMLElement,
-  innerHTML?: string,
   textContent?: string,
   ...attributs: any[]
 ): HTMLElement => {
   const newElement = document.createElement(elementType);
-  if (innerHTML) newElement.innerHTML = innerHTML.trim();
   if (textContent) newElement.textContent = textContent;
   if (attributs) {
     attributs.forEach((a) => {

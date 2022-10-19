@@ -12,6 +12,5 @@ export type { TElement } from "./TElement";
 
 export { foo } from "./foo";
 
-export type { TAttributV02 } from "./TAttributV02";
-export type { TElementV02 } from "./TElementV02";
 export { cElementV02 } from "./cElementV02";
+export { CC } from "./cElementV03";

@@ -7,3 +7,10 @@ export type TElement = {
   parent?: HTMLElement;
   attributs?: TAttribut[];
 };
+
+export type TElementV2 = {
+  eleT: string;
+  textContent?: string;
+  // click?: Function;
+  attributs?: TAttribut[];
+};

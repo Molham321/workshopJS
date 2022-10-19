@@ -1,4 +1,8 @@
+/**
+ * n = qualifiedName z.b "class", "id", value etc..
+ * v = value
+ */
 export type TAttribut = {
-  qualifiedName: string;
-  value: string;
+  n: string;
+  v: string;
 };
