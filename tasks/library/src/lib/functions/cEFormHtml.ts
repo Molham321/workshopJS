@@ -1,5 +1,9 @@
 /**
- * to create HTML Element
+ * good!
+ */
+
+/**
+ * to create HTML Element with innerHTML methode
  * @param html html script
  * @returns element
  * @example
@@ -12,7 +16,7 @@
  * `)
  */
 export const cEFormHtml = (html: string): HTMLTemplateElement => {
-  const template = document.createElement('template');
+  const template = document.createElement("template");
   template.innerHTML = html.trim();
   return template.content.firstElementChild as HTMLTemplateElement;
 };

@@ -1,16 +1,26 @@
-import { setAttributes } from "./setAttributes";
-import type { TElement } from "./TElement";
+import { TElementV04 } from './../types/TElementV04';
+/**
+ * good!
+ */
+
+
 
 /**
- * to create a new element in the document
- * @param element a type of element
- * @returns we get a new element in a certain container with a certain class
+ * to create and return a new HTMLElement with TElementV04
+ * @param element a type of TElementV04 to give elements properties
+ * @returns HTMLElemnt without appending!
  */
-export const cElement = (element: TElement): HTMLElement => {
-  const newElement = document.createElement(element.elementType);
-  if (element.innerHTML) newElement.innerHTML = element.innerHTML.trim();
-  if (element.textContent) newElement.textContent = element.textContent;
-  if (element.attributs) setAttributes(newElement, element.attributs);
-  if (element.parent) element.parent.appendChild(newElement);
+export const cElement = (element: TElementV04): HTMLElement => {
+  const newElement = document.createElement(element.type);
+  if(element.events) {
+    element.events.forEach(e => {
+      newElement.addEventListener(e.e, e.f);
+    })
+  }
+  if(element.attributs) {
+    element.attributs.forEach(attribut => {
+      (attribut.n === "textContent") ? newElement.textContent = attribut.v : newElement.setAttribute(attribut.n, attribut.v)
+    }) 
+  }
   return newElement;
 };

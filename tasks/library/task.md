@@ -1,6 +1,7 @@
 # "Find Element(s) Wrapper"
 
 #### Anforderungen:
+
 - Typescript
 - Tests für Klassen und Methoden
 
@@ -16,20 +17,21 @@ Es sollten Tests für die einzelnen Funktionen geschrieben werden.
 
 ```html
 <body>
-    <div class="cls">
-        <div class="subcls"></div>
-    </div>
-    <div class="cls"></div>
+  <div class="cls">
+    <div class="subcls"></div>
+  </div>
+  <div class="cls"></div>
 </body>
 ```
 
 - Elemente sollen "chainbar"
+
 ```js
-    const cls = document.querySelector(".cls");
-    cls.querySelector(".subcls")
-    document.querySelectorAll(".cls").forEach(item => {
-        item.querySelectorAll(".subcls");
-    });
+const cls = document.querySelector(".cls");
+cls.querySelector(".subcls");
+document.querySelectorAll(".cls").forEach((item) => {
+  item.querySelectorAll(".subcls");
+});
 ```
 
 # Utility Methoden
@@ -53,29 +55,30 @@ Attribute sollten via Object an die Funktion übergeben werden.
 #### Beispiel
 
 ```js
-    let element = document.createElement("div");
-    element.setAttribute("id", "someId");
-    element.classList.add("class", "anotherClass");
-    
-    let child = document.createElement("div");
-    child.classList.add("subcls");
+let element = document.createElement("div");
+element.setAttribute("id", "someId");
+element.classList.add("class", "anotherClass");
 
-    let subchild = document.createElement("div");
-    child.appendChild(subchild);
+let child = document.createElement("div");
+child.classList.add("subcls");
 
-    let childsibling = document.createElement("div");
-    
-    element.appendChild(child);
-    element.appendChild(childsibling);
-    document.body.appendChild(element);
+let subchild = document.createElement("div");
+child.appendChild(subchild);
+
+let childsibling = document.createElement("div");
+
+element.appendChild(child);
+element.appendChild(childsibling);
+document.body.appendChild(element);
 ```
+
 ```html
 <body>
-    <div id="someId" class="class anotherClass">
-        <div class="subcls">
-            <div></div>
-        </div>
-        <div></div>
+  <div id="someId" class="class anotherClass">
+    <div class="subcls">
+      <div></div>
     </div>
+    <div></div>
+  </div>
 </body>
 ```

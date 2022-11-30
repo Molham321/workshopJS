@@ -1,25 +1,30 @@
+import { TElementV04 } from './../types/TElementV04';
 /**
- * to create a new element in the document
- * @param elementType a sting z.b "div"
- * @param innerHTML a sting innerHTML z.b <p>HelloWorld</p>
- * @param textContent a sting textContent z.b HelloWorld
- * @param parent a HTMLElement to appendChild z.b doucment.body
- * @param attributs array of string tow string first one is the qualifiedName and the scound one is the value
- * @returns new HTMLElement element
+ * bad!, there are better alternatives, see cElement.ts
  */
-export const cElementV02 = (
-  elementType: string,
-  parent?: HTMLElement,
-  textContent?: string,
-  ...attributs: any[]
-): HTMLElement => {
-  const newElement = document.createElement(elementType);
-  if (textContent) newElement.textContent = textContent;
-  if (attributs) {
-    attributs.forEach((a) => {
-      newElement.setAttribute(a[0], a[1]);
-    });
-  }
-  if (parent) parent.appendChild(newElement);
-  return newElement;
+
+
+/**
+ * to create and return a new HTMLElement with TElementV04
+ * @param element a type of TElementV04 to give elements properties
+ * @returns HTMLElemnt without appending!
+ */
+export const cElementV02 = (...elements: TElementV04[]): HTMLElement[] => {
+  let elementsList: HTMLElement[] = [];
+  elements.forEach(element => {
+    const newElement = document.createElement(element.type) as HTMLElement;
+    if(element.attributs) {
+      element.attributs.forEach(attribut => {
+        (attribut.n === "textContent") ? newElement.textContent = attribut.v : newElement.setAttribute(attribut.n, attribut.v);
+      }) 
+    }
+    if(element.events) {
+      element.events.forEach(e => {
+        newElement.addEventListener(e.e, e.f);
+      })
+    }
+    elementsList.push(newElement);
+  })
+  
+  return elementsList;
 };

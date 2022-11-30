@@ -1,45 +1,38 @@
 {
+  "name": "library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "dev": "NODE_ENV=dev nodemon -r tsconfig-paths/register src/app.ts",
-    "test": "set TS_NODE_COMPILER_OPTIONS={\"module\": \"commonjs\"} & mocha --require ts-node/register ./test/**/*.spec.ts --watch --watch-files ./test"
+    "test": "mocha ./dist/test/**/*.spec.js",
+    "performance": "node --allow-natives-syntax ./node_modules/mocha/bin/_mocha --reporter mocha-performance ./dist/test/**/*.spec.js",
+    "lint": "eslint ./"
   },
   "dependencies": {
-    "canvas-confetti": "^1.2.0",
-    "chai-dom": "^1.11.0",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
+    "@snowpack/plugin-typescript": "^1.2.1",
     "jquery": "^3.6.1",
-    "uuid": "^9.0.0"
+    "mocha-performance": "^0.1.1"
   },
   "devDependencies": {
-    "@snowpack/plugin-typescript": "^1.2.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@types/canvas-confetti": "^1.0.0",
-    "@types/chai": "^4.3.3",
-    "@types/jasmine": "^4.3.0",
-    "@types/jest": "^29.1.1",
+    "@types/chai": "^4.3.4",
     "@types/jquery": "^3.5.14",
     "@types/jsdom": "^20.0.0",
     "@types/mocha": "^10.0.0",
-    "@types/node": "^18.8.3",
-    "@types/snowpack-env": "^2.3.3",
-    "@types/supertest": "^2.0.12",
-    "chai": "^4.3.6",
-    "global-jsdom": "^8.6.0",
-    "jest": "^29.1.2",
-    "jest-environment-jsdom": "^29.1.2",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "chai": "^4.3.7",
+    "eslint": "^8.27.0",
     "jsdom": "^20.0.1",
-    "jsdom-global": "3.0.2",
-    "mocha": "^10.0.0",
-    "nodemon": "^2.0.20",
-    "prettier": "^2.2.1",
+    "mocha": "^10.1.0",
     "snowpack": "^3.3.7",
-    "supertest": "^6.3.0",
-    "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.1.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.3"
   }
 }

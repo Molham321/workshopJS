@@ -1,25 +1,12 @@
-import { cElementV02 } from "./../../src/lib/functions/cElementV02";
+import { cAElementV03 } from './../../src/lib/functions/cAElementV03';
+
+
 import { expect } from "chai";
-import { JSDOM } from "jsdom";
-
-declare global {
-  namespace NodeJS {
-    interface Global {
-      document: Document;
-      window: Window;
-      navigator: Navigator;
-    }
-  }
-}
-
-const { window } = new JSDOM(
-  '<!doctype html><html><body><div id = "cls"></div></body></html>'
-);
-global.document = window.document;
+import "../index.ts";
 
 describe("test cElementV02 function", () => {
   it("to create HTML Element", () => {
-    const div = cElementV02(
+    const div = cAElementV03(
       "div",
       document.body,
       "test from cElement",

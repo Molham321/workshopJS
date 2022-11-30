@@ -1,47 +1,37 @@
-import { setAttributes } from "./setAttributes";
-import { TElementV2 } from "./TElement";
+import { TElementV04 } from './../types/TElementV04';
+/**
+ * bad! see cAElementV04
+ */
 
-export class CC {
-  public selector: string;
-  element: HTMLElement;
-  constructor(selector: string) {
-    this.selector = selector;
-    this.element = document.createElement(this.selector);
+export {};
+
+declare global {
+  interface HTMLElement {
+    cElementV03(...elements: TElementV04[]): HTMLElement;
+    // cElementV03(...elements: HTMLElement[]): HTMLElement;
   }
-
-  public addChild = (child: CC) => {
-    return child;
-  };
-
-  public getParent = () => {
-    return this.element.parentElement;
-  };
-
-  public find = (search: string) => {
-    return this.getHTMLElement().querySelectorAll(search);
-  };
-
-  public ccAppend = () => {
-    document.body.appendChild(this.element);
-    return this;
-  };
-
-  public getHTMLElement = () => {
-    return this.element;
-  };
-
-  public ccAppendChild = (...element: TElementV2[]) => {
-    element.forEach((e) => {
-      const newChild = document.createElement(e.eleT);
-      // if (e.click) {e.addEventListener("click", e.click);}
-      if (e.textContent) newChild.textContent = e.textContent;
-      if (e.attributs) {
-        setAttributes(newChild, e.attributs);
-      }
-
-      this.getHTMLElement().appendChild(newChild);
-    });
-
-    return this;
-  };
 }
+
+/**
+ * CE = create Element is a HTMLElement prototype to create new HTMLElement in the document
+ * @param elements is a optional rest paramenter to give elements properties
+ */
+// todo if (elements == TElementV04 => .. || HTMLElement => appendChild  )
+HTMLElement.prototype.cElementV03 = function (...elements: TElementV04[]): HTMLElement {
+  elements.forEach((element) => {
+    const newElement = document.createElement(element.type) as HTMLElement;
+    if (element.attributs) {
+      element.attributs.forEach((attribut) => {
+        if (attribut.n === "textContent") newElement.textContent = attribut.v;
+        else newElement.setAttribute(attribut.n, attribut.v);
+      });
+    }
+    
+    if (element.events) {
+      element.events.forEach((e) => {
+        newElement.addEventListener(e.e, e.f);
+      });
+    }
+  });
+  return this.lastChild as HTMLElement;
+};

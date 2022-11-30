@@ -1,5 +1,11 @@
-import { cElement } from "./cElement";
-import type { TAttribut } from "./TAttribut";
+
+/**
+ * bad! it works but you don't need it
+ */
+
+import { cAElementV02 } from "./cAElementV02";
+import { TAttributV01 } from './../types/TAttributV01';
+
 
 /**
  * to add a new List Item to a table
@@ -8,16 +14,12 @@ import type { TAttribut } from "./TAttribut";
  * @param attributs is an array of tow string (qualifiedName, value ) to add id, class , etc...
  * @returns neue <li>
  */
-export const addListItem = (
-  parent: HTMLElement,
-  innerHTML: string,
-  attributs?: TAttribut[]
-): HTMLElement | void => {
+export const addListItem = ( parent: HTMLElement, innerHTML: string, attributs?: TAttributV01[]): HTMLElement | void => {
   if (parent.nodeName == "TABLE") {
-    return cElement({
+    return cAElementV02({
       elementType: "li",
       innerHTML: innerHTML,
-      attributs: attributs,
+      attributs: attributs
     });
   }
 };

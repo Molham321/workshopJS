@@ -1,4 +1,8 @@
 /**
+ * bad! it works but you don't need it
+ */
+
+/**
  * to create a new table in the document
  * @param parent "parent" is an HTML element
  * @param columns array of string
@@ -7,13 +11,7 @@
  * @param id is string, a id name
  * @returns we get a new table in a certain container with a certain class
  */
-export const cTable = (
-  parent: HTMLElement,
-  columns: string[],
-  data: object[],
-  className?: string,
-  id?: string,
-): HTMLElement => {
+export const cTable = ( parent: HTMLElement, columns: string[], data: object[], className?: string, id?: string,): HTMLElement => {
   const table = document.createElement('table');
   if (className) table.classList.add(className);
   if (id) table.id = id;

@@ -1,28 +1,19 @@
+
 import { addListItem } from "./../../src/lib/functions/addListItem";
 import { expect } from "chai";
-import { JSDOM } from "jsdom";
+import "../index.ts";
 
-declare global {
-  namespace NodeJS {
-    interface Global {
-      document: Document;
-      window: Window;
-      navigator: Navigator;
-    }
-  }
-}
-
-const { window } = new JSDOM(
-  '<!doctype html><html><body><table id = "table"></table></body></html>'
-);
-global.document = window.document;
 const div = document.getElementById("table") as HTMLElement;
 
+/**
+ * to add a new List Item to a table
+ */
 describe("test addListItem function", () => {
+  /**
+   * check if new ListItem exists
+   */
   it("to add a new List Item to a table", () => {
-    const newListItem = addListItem(div, "new_List_Item", [
-      { qualifiedName: "class", value: "table" },
-    ]);
+    const newListItem = addListItem(div, "new_List_Item", [{ n: "class", v: "table" }]);
     expect(newListItem?.className).to.be.equal("table");
   });
 });

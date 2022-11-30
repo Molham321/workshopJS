@@ -1,16 +1,7 @@
-export { addListItem } from "./addListItem";
 export { addClassName } from "./addClassName";
-export { cElement } from "./cElement";
-export { getElement } from "./getElement";
-export { getElements } from "./getElements";
-export { cTable } from "./cTable";
-export { setAttributes } from "./setAttributes";
-export { cEFormHtml } from "./cEFormHtml";
-
-export type { TAttribut } from "./TAttribut";
-export type { TElement } from "./TElement";
-
-export { foo } from "./foo";
-
-export { cElementV02 } from "./cElementV02";
-export { CC } from "./cElementV03";
+export { addition } from "./calculator";
+export { CE } from "./createElement";
+//? export prototype problem
+export { CET } from "./createElementTemplate";
+export { CT } from "./createTable";
+export { $, $$ } from "./getElements";
