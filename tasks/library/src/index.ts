@@ -37,3 +37,14 @@ fooV_CE();
 // faster("CT", avaTime(tester(test_CT)), "CT plain javascript", avaTime(tester(test_CTJS)));
 // console.log("----------------------------------");
 // faster("CE", avaTime(tester(test_CE)), "CEP", avaTime(tester(test_CEP)));
+
+
+
+
+
+
+
+
+
+
+
